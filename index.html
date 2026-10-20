@@ -1763,6 +1763,8 @@ function setupClip() {
   function discuss(id) { ov().discussing = id; }
   function settle(id) { ov().discussing = null; ov().resolved[id] = true; clip.justResolved[id] = true; clip.card = null; }
 
+  var PACE = 1.35;   /* stretch every hold below; raise to slow the clip down */
+
   /* [what happens, how long to hold it, true = no redraw (a button press)] */
   var STEPS = [
     [function () { group("c-launch", "Launch date"); add("c-launch", { id: "c1", type: "concluded", text: "Beta goes to 500 users first", importance: "high" }); }, 700],
@@ -1803,6 +1805,8 @@ function setupClip() {
     step[0]();
     if (!step[2]) {
       clip.render();
+      /* the tick animation has started; drop the flag so later redraws don't replay it */
+      clip.justResolved = {};
       fresh.forEach(function (id) {
         var g = canvas.querySelector('[data-item-id="' + id + '"]');
         if (g) g.classList.add("pop");
@@ -1810,7 +1814,7 @@ function setupClip() {
       if (!clip.card && !ov().focus) canvas.scrollTo({ top: canvas.scrollHeight, behavior: "smooth" });
     }
     at = (at + 1) % STEPS.length;
-    setTimeout(tick, step[1]);
+    setTimeout(tick, step[1] * PACE);
   }
   tick();
 }
