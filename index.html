@@ -263,6 +263,15 @@ p { margin: 0 0 14px; }
 @keyframes tickPop    { 0% { opacity: 0; transform: scale(0); } 30% { opacity: 1; transform: scale(1.35); } 55% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1); } }
 @keyframes fadeIn     { from { opacity: 0; } to { opacity: 1; } }
 
+.try-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin: 0 0 18px;
+}
+.try-title span { color: var(--accent); }
+
 .hintbar {
   font-size: 12.5px; line-height: 19px; color: #64748b; padding: 9px 20px;
   border-top: 1px solid #f1f5f9; background: #fcfdfe; min-height: 37px;
@@ -675,6 +684,7 @@ h2 em, .pivot em { color: var(--hl, var(--accent)); }
 
   <!-- ── Live map ────────────────────────────────────────────────────────── -->
   <section class="try" id="try">
+    <h2 class="try-title">Try it <span aria-hidden="true">&darr;</span></h2>
     <!-- A video call on the left, Wrap-Up docked on the right. The call is
          decoration; the panel is the real Board. -->
     <div class="call">
