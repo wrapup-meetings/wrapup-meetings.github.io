@@ -4,8 +4,7 @@ GitHub Pages site for Wrap-Up.
 
 | URL | File | What it is |
 |---|---|---|
-| `https://wrapup-meetings.github.io/` | `index.html` | Home — intentionally blank for now |
-| `https://wrapup-meetings.github.io/intro` | `intro/index.html` | Product one-pager for prospective customers: motivation, the live map to try (the demo's Board, copied in), features |
+| `https://wrapup-meetings.github.io/` | `index.html` | Home — product one-pager for prospective customers: motivation, the live map to try (the demo's Board, copied in), features |
 | `https://wrapup-meetings.github.io/demo` | `demo/index.html` | Participant familiarization page for the meeting-map interface |
 
 Every page is a single self-contained HTML file: no build step, no dependencies,
