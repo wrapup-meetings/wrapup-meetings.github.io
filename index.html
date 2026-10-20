@@ -263,14 +263,27 @@ p { margin: 0 0 14px; }
 @keyframes tickPop    { 0% { opacity: 0; transform: scale(0); } 30% { opacity: 1; transform: scale(1.35); } 55% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1); } }
 @keyframes fadeIn     { from { opacity: 0; } to { opacity: 1; } }
 
-.try-title {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -.01em;
-  margin: 0 0 18px;
+@font-face {
+  font-family: "Caveat"; font-style: normal; font-weight: 600; font-display: swap;
+  /* subset: only the letters of "Try it yourself!" */
+  src: url(data:font/woff2;base64,d09GMgABAAAAAB3kAA8AAAAAOpwAAB2JAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGiIbg2QcikwGYD9TVEFUHABwEQgK21DBPgtWAAE2AiQDgSgEIAWDbAcgGzEsM5K0Wg/JVGdijBv649effz+Ip3emsysZUQ4gsO50QQedlh10yuQSfALh+1/VSqIVW4DgDOeC7UkXQ2c3xerkUPld1RCt0H7gfxKY5QRSICVNsMJKG7WOWbccxKkqgG5ZjlwATDtAOgE5P6cbS5YSeXO+OrFDbQfIJ4Kf57f55713oUVobcQqEAVrX7BQcVYuUKwArM1FG4t0kTpduChd9Efnsvy9dr9ctf/v/1/7Vt/9siqnIx4J5Rt4ktAoZebOrL3335rMrPmszkfcQtIomr6gK6IN4pKIbCjUuJFDrYRIiORGSZjsnd9jqs+kM6MBAqSyP3ZFAUH6msZAdcDUFG5CP3oKfmrSHN2z98CRhBdOW7mYMObu8bKhWzBr+WK8H9Iqz0S3mAKruZfbkOrIRxxlPyvJms9kPCPpD60jjdFXSAr1mhuY+AkoT0H5HQMXftwZeJj+gfl4V6oLvV0Lye/obXIuqnNdx7gmCVCXUBf3cB/HlIfxSh6fFLMuyrME5VlCUiQsDxOXHAl5GMOSZ0lLEUuKZKRIRclTSYpUlg+o2m1eTb4lg1KgP2TIs5iSxysPn3FRQL4lCKHxhOVZ4pInIUWSkiclv5OWHJbkzgw5eLhnearIt1SVPNXkYcqj5GM0CSXyMWZLdZHUp8YrOXwo8EueKJ67/+OuYv6AP6yD9bMCzL/zD+y7I7XpatBu0TOmLVxJcuG8OdMQZ2fszbcibD7JarpTeSXzAbw/visBDDKUozwVqEglKlOFqlTbDhX7qwkTIUqMOAmSpEhjoVmigslKcH/lNc26ptt42njAKDO2G/ON4UZbo7Kh9ef6RX2PHq9766a6vNbqa/WGuq1Oqc1qthqs6qu0gq95i4c5z27mMxgDNz/yIz/yIz+qOErVRz8BmJ/8ziJNhRGvOwsylN9p1X+E4udcY4CfA9LLP1DgV012qvocisfHRh9bCIQ5B14BMLJ+NYrDY6MnqTOS1sK8Ftw1mrr075qnG12RSQabB2NwCvBlUgeoRz1qhj3E4zWWZSBF55njMv03UFAFnR2ZCF3tdg1Q7i2qmgHKvyXlh7fs/XgctccALtp+Eu6xdQ+SeiEbsNV/a4GiIhWaCw8+sakPESHGznqLclRgc2fVqE4NalKL2tShHn3nNqW1xiRMtHvxNLkovqobL1XHUQzNHRkJbe22DeRv+xVB29PwvL0v4Q3bb0Cp7TtI/IUuAubbOngcdxHmdLz28RQ9mwzlqUhVWi1bnu+2yUmpPd9tQWYqrKhY57fuuWlMbapSniRh6qAJUFvleailBLDqFRGvyQNW4425A0LAIlO9rMdGovfHwIAyNZnmrE2YH3EeLUNhws+P9Bg3vBdPUpV1xpP/v5NVG0XVAVAnX1FHdSDzqgGJd1kAyYN202vmzF2pviTtMZ8b29NNQlKNEyW69WqMZDbzWMgSVrFO5IwFI5n117S8HblfsnJWTstJccSm7QRzpR5176NMhAhxrD6Ql6RHauQYsqIz9zV6uUs0ztUruXsl9F/sMZNZ8uSPTkzDMIw29VdMbRbdUTPRp06s46yJPTpU7Z0amYl3bFixfbehfVo37xVfUCk2pk6845iVDcdmK1+sXD6RrTxmZ4X4jjGP9whuiKwNz5gwc8GEtRtmjt0QHDvKfsByLt2o4Jy2nKzlZG/cyFrOactx1DZHOY5VYYx9JlNWlrLP5PNnkna+qZ3PnDljT7l5j+VcreMUrEKh0OZqQR24dSt15e5yJXby8uV0aWmu9eX99Oxp37w5zS5N5+6p4GQvXcpa27IVTl+ynGwFJ6uU377tv50rX+q80KvwXMBxrG2O5dxKlWxNOYU6BwoB50DqwN2prSWpkq1J+7J//03/5Zst919m/5lM2ZlkiZ20bXpIUUrEFUS599ykOUX0MB/CpOy/wGW/lIhMOYmOqaqSzjE1/sMfOEBiy1KGzeZMb2IdYh1irWO9kZs/HhT7R6s6yoEDeR8piIC4nxOHhxQgysl7+r79w9/et9fvVH3/DYaTphGmiGj/bb06ndBRXpw0QSKiRIxNIUy7/Q5nM6amx9C2xE2jh/AssWWGjqnqRiqU6DJ3w5REJ5d95iqJu50Mm1g375mCw3zOYcKUZegklsdQt22kiANFOQwUcSAeKaIo1xuJWpii4LA6rlcrPoYo5+C9j4AigCjPOfgoBRrZ0kmFiXUSl8tKKomdMJSC50AciLhf/cqWpcR7iShxLQp/TqthPb1+Bx3DqqqkRqacVMgUMlz2fcUUxhhiZYQpopzmH9I8yoEDeYpy4GNg+dHlPsppNLbJ9C5DyyxKndhlhvf3cvb8LGjRdAfF/mfzF+f1ajS7fwddmdiat/sj6jYjW2auynDZLyWuhfEfEoHE2fOZxCDDH4UxTBuWtxxqvv3Hh0AcPEWKONTDyZQhrr/SIUi0ibUDa5PpM6kUGz9mqrqXs93fz1ALbDqRexooiHJe14m1ibK+gM5TYwew3fZmf6CAiAMIMCdPnxaimx/D6k8jO50myjL7+CbDZfbF19YyNYuNDtIZqLSeOJhTG2EMpzal5pvQHRQwqFcDGHMADj71+yMqTsxGYpAYGDYip/Pt/nv7+NC6BIhDy7dP3rd3WdV/cX/vMSO+/NDvvTCb/4+cy6yTiEKiEeby07lP80K4UP/qybD+07OknAVhnp6FXYa/77ObEQctLjPnJGOohSl8SnOXam3+ME/n+3PYbkf21Z2kSX99kzkl7X4zsfnNI//D1YkhouH4Dav6/v9nGGLdiOb2wBD3r4+DVv8kSTj56Ba8mFijDDMpk4LQS+yivG11nrkYBgPYjnSQs5vEWg5ty1PE2BgzhOk1e9yPXN8vpfHmA91uJzHWT2+ZrZu3vJ1IFg7Zsaoc2BqiPGd2/jql+YepMEFuOlH85ZGtM8/+MqX9lSja0eTusEWdIM08rg9M4Y/85YGnX4FN7KRktqqkboS58CM7ZaqSrpJV/061fMfdZLetD41AU3DXxgEuXWie0mUqlWkR9X1QPaoniZ2WslC8hfVBcTyGyGw2Adp2E+UmNnRcgygeXv/nH9/xY+Y0ug9mLrE2GUNyeA4PDymYEUwmiS2rD7CqKulsMrbMXDTEnS9eCJxJfB7rThQXHLantkxU2/J2/yn5Yf23u0OLUhth1kGqMrl7c6juz2Z/f36m18LcRvl9qzCZyoBmB+PVVlS8XwhTiB/2QztNbOkdSNJBkzqxiim7n36zkW55L29gBAboHIAZLTEI3R2YejBereoIyJXTLkT3wNAUKW1XvwYtesOcrc/bF8l4Ok3Kvu/vhSk5qmH+8EAY3uyD2f0H7l46J7VmRhgTwZzP90dwIUxW29bD2tLTc4shNlqqIMPuE7zPXN9nN/1PEPl3cHGZwuURXR5FND3x/f5X46ktdsvwZrlcFt1nSoEiIBqA9xTrf/90CDWHuh4oiPK6Hj158xNXJnYqrYsRhTaRmWU4izalQTRP2VHM4cUWLawmiaUUCmGas7CjQDGUMthL/adRCLMMVcI+L21LApqhnTIGeVHvVDdVlVU2Ma4ew0kILpMYb8jw/pPd/79BHZep1B+UORhT3hLaRFjgNfD2IYW5qx0I+uzPaw/F+NYJN56JJS4eGHnlFQnrFwVj5UaAotD+ih0CPYimgTzwSjNjlwUTCUuAc0tR+doFZHOhEi4MaEVCV0tBEdd8qgL1vo6qZoUiVBkoSeQL8V0JkDEUKP8nnRoYgBADjGG7JEkYQxkDHCmWMWDmQqz4oj2h/r1kE2wztEcevYgbAgfWs9RAsZrecZGr+OSIc17EOUe8P1phfFIkpkqDjiaRsaNOrtMVXRT1JtRNiaU+Z14ItiqcikToMZDBfULs+G7fmtebaBKB5Ik6RIUgEYlA4iHIUpAqPshpppQMpRurdVPYS4G8rTuOtR6CBFiIubVawPrCzX1lvOSkgfL7QIVSn8KTKHBvH6Obq2ObfQqvoz1G3eSirJaiQH8RixVDJPIrRe6RMuwlRp1BRRJiMKhXT2jGDMoMMmYJAgK9iOKfLYYIIlSgC5h5UaKvNNxbm+mJUUNWS+YrEguJ0T0HyqiGuJT3gEjygMT27qw2Dy7EShgpmi+0RDe8XmbuNX3K9sLw6xdppDIeqi2EgKwyqEYEo39PG3dm94hGCSCEAJkxhlrGoPqK8MwbxGpKhQzi4DW4wZLOUYib4BMWhFJQfy1OG3bodxUk9yDDiFCSJ5emTK/ukniKx4ch1s3GjH3BMXDwpT1bttQhbUNRFZDGlc7bdAAUMyWxgWYp5sg3zrTofSI8ElkthliH9jR9H+FFyQt1o9ioGMdSIl3xBZJUUklOLy1PcO8ZhlEFC4iQt3ZhYCZBZDB1uwga+CHChkw0UzByp4TZDTGYIun3XqRpFFESKgi9Us4qKylui50MSgX0182YlRbkDeLjjBUeGp+hMytI0+oflDe316QU8QMHmtA3ZPNahp16E0WGJcWyXB6G6dUUd0BNAoMyWQbyQyvXKX2PJdc40FBY8vSAqZFixi4LaEmhh4jRtFrPqvuSCC/ETwinZKQNyhbqdWa4xIRW/v22ognDk8IV0i11W14fXB8BYyuJaoyYkoG1Cl9Tv3mmSmxjl36wQL7jRfr6iyi3UI0//VRvsFAqwikMsSFIU8VBcdUs4K+6BLFFZtJARGJ4gR6rTWhNhlGzLSI9s9dVfP9Hrk0jM0+OPDl2SOYr4n3rW/L7p76b+apoz2rPPAHe6fhgjpD998h7Rt9sq9o3Gp1sanjb99gDtvnFdscN9s7cCdNngaJ7vxl/xp57wGY7DJ8a2fXUXbfEPoiCWeM2jm66Un+55idb9ELFvqeBzU9WXf98e9Ml991IXplw5BPL+kbHWvvyzjwgVfuX69WXk0Gn//13N3IvG6kHCkf3dowOOHJqPtiHPvxOLHp/yNwV4+x+lO9ovvfJCf1D4E3+3HLU6Xq25ENUXm13+f22wf6uDFdexnW/VGSvdNiPLbrkULdfuHLkXW6wdJB4hx887vbcfF/FiqPe+fZ5nS7wVcUnm/93jqmqr0Xjb7l1iGB3yEOmXu0EK/9d8/zrTmvjSv/awPmcjs9nRAvhPU8jaPceyc/EXkdtftbvH7+5+JHu8YUX23t/9jhf7Or47/N1DnC7feixqZ+3JYaOKKGTrndbtL//3gVKpcinD7rOfDF7WvPFYyaM+HTlNdf+98j3ataMtokra3/8Y+EFIH2bP3/c57Gj8esXPOO4pbPfuAUyWPbX53UoqcyDDXPqyt6jwPmO0F6XTnpYKvMIJRC50uCDeeFWea5Tumjcn1CHItg68ufUp1OrPBpO5NkKeDOKTxOek6abUo5oLCkMsC5QVOq5ThGZGAGr9pavQEiIoHBGyEo5Bi3rcWTj9u4u81z9jhgXYnMU74s7geIJVqxg/oYichafqrRDGBmnidk+zAAoFzRV2SmpcQSR7lEL2DaC+bp/W2dT2E5lt61ybzhfmatp883a3tKBsVu54/Fy6bGIzrmFgqdl0E52Od1er82iWB/9xcxDEylUvZyUiJAGVZXZxIiiXpKoe6gSHEFTU+NWpkWWyL2Oi1BtmPLBk3U4osgRHehfP9rk21lth500i797nUPF7iyIDuCRbUT8P3MN5hPzWzMyXF+VR3j5stOnzLtvHn8s0Vg86aDC1zt1Tcm3n2XRD6tYV6HRvuWts/eGSluaddSmLetUTb17awy/+qTmjYV9SKuPlVVET6LsBEQCytzXZuX9zHdvSx9Nj15RQ0Ba2Y/RsBFdHWOQ20DB6C6SqxRR8lUI/dORaheEMKAMs7kfO/5gPwtf806yYM5kZQKTHUcBFYk+6vOtLKpRDhoSyoLekfkksppqFAe1KpwR2vN0JEg4mUJ/aeGZ9NaKlbOn45MK9mFb54d54jEQwMqVJiuKdzUXLEJUW6SyXSGWNQoTZlRWzemM7W9p5Y1OdVhiSJz9IWh4aBXb/YtbHZtqphqNZUr5m/5feEmZgSvUXX13tzWvnm8DGssw5pY3VzPokIKtf5IlIpPczmXIjw6j1+5j/HyuZWRrXL7zs1D73CHubZFq/L351T42qrqZuO3Fo4E/819LZ0X1aos9LhPchaM7vBlWUwYh/drHvy5HSJ1XxdSrO4qK7kyb6JHw0L0hK38+gf6rSQpZcXR0LkCLxfZTR1X/NrnFaK9pRStC9hR5RU5f56U0Pn2MxYpIZCDr5FSR1JNheTAAwOE60oiwhOd0veDYa7jAlIeoxhHWGd7J2j0dRQxmz+FYsyOTnzjw+Y86giawu9oY3KCjM901gSN0ykE1L/WoDPs0zJGp+1ZYkKjF29h1TtgiGlVx0O5vplejftteSYGu69CpLUNSHZY2YQOsTjMvHXEKFkwRJDXbjxdrOySpDPxLzWDZig8jlrzGPh67xo/HjNUdjUWZZHwefR6VpqKcIBEYiAdV/YYkRtMbw+G3/JW1O0FLvNHJZcPPlDOJaK+I7DLooasehFN8HQP+/vckke89kO3afnxnFz2kIn9DgK5el/wEp2nePEJBIzP/nQrNjqsDGJZTIjhFndtFCa1Dcd/aLg3nVAURiB0ovtlNQr5B8pqq8LyEsO3CEu+y0jsXKlLFqUtRZsIs2ioKnOdE0XZ9WniGKrFJ9dQmnFL2GEaziXokC4jLSCMfQhQ0EenWjPNu8TIRTbpD9lEoOE1+RYpinwuD/ksm5ujpW3vfwffDZC7rBOwTiXkkjryfQ43/afScG7vmFn03175rTUfP1kx9hZa89vS1r0fpDLNyuXrfJkKeMkwipK3rkatm5fFfYADMbs+4XnE68s/1X4vGbFFpwmrLaAfL+f4BrA84W190qYpDvT9TqXNL7Cm1dBgSBDpTKMygB9e2W7J2lLM7pjtpPKPgKX7XMPrjbr49c/HWHSSfVY8ipSxAaS68/q1zJF4bF+g1gdTBztgsu1eW8TNByj64tW+FKIuwYdjSnFK7cadrF1UFJFVye1vnmENL4mBf+0lIx/XV+ypzrQl7+8Y28y2KKkSbRY8XJTtqvh28FadT0BoXzahn1yDWADt6jHHuZsgvP60kWUJKU90pUgg52EuS1mzvonRdmrEAmiHuW/qH4Z1reZM6M+h6Jzl4vX1Zl7EkUFbHj7KMhGzH4g0TM+iM8oqV3MHN/1TG7E4P+dmWWLuG55Nfnym0ZpQqQpxOBIQ/SaoSl2dnFeXuo46FHkdYbDohX1nuiBwv2zMyh2eud56YQIAK4RuOwU6LWtvISofoXc5SRNYTqRdk6DlSoFWdo5+2q9eeM7Dd91wyCao92TNHBtPepOnnels48crtAyQVY4q6dztov7i1XVr90ODzhChRPwvlSpqidxZ2TLkr422FTdVmEiKHImtbF/fouPZq9bIupzNh67d8ZoPkYIbVvjXQwrBYetL2eYzMjqRaOXt65zTNujpEGpPkDJVv8Qn2bNMP9Hg+aKpvv6z0MhUcIdwspKT1EZQ3ra91Kmmdmq6xCPOMz0KTqVEDpTNgpiuKB6RF+i2heYmNMSMEki7oXcoRUoLF45WjQ7NnMJ/N4pI+PcepPH2vE1eIQZlw6B7PIikeRxjB9iTlqTumY9AY+tpWfRYPxukeLrzp8aETOEoPqzqIa6Kx9rIsmaUYZxKXr5U4L3lxYnISDxdOdGEGLkgT2EkwHIv4wsEwzIWAC4T549GUTWDlCxkBhDHH/VJvgnP9hhzfbCWMNdqWT0dJ/7klrvZ3HdcyItLZiMNShi7x3mbAChPlLbRx9MmKQEqEJj4zMr18yuRSxvKQrxmZovrVpU3Bj38VP0c36r75EQXd5YjVH343+PatI78mv+xbHv0ipqYPzgeZqplXN1y0ZqYNRPW1YDvC1H4GUVRZw10d5mz15ckhGtYjTSMPrHlpz299wt4eKQPEUzhSbXhdd05ZJBYeqlbkIwbJfneBjufE4WDYDL/W7didQ/BjcN+y7DQ/PbhKLFoEOtCs743h/e7oga99eJnXIZc+ijp65g+p2XJut7N4+vRwW2Bz+tm8p3P+nv8icDOvXpjF8jdUI2upzulZR6wos5D0jy4aq+rgkC9Wp/wLiKxtiKwAuVZBXZKIWUtVj9GwXeLnJbDLXTw/lnNGGHPij7O/B++l9IXapSQ3i+46mzv/nFgcHFU8v3jeK6Hru73zs065H4qGrn+c/u6zHdfr3snYHnfISW3eYBx9PShUBeFR9Gijq7Hx6s/D0fob0/+1Y0q9yB1HSBGPxs+Z7ZgygSpVk57j7NuPCHzd9bUYZ9117XJrlWN+gWqC8gntfQi3rNgKMozp7IelMo9QMiJXGnwwEW5V7Rq50Y6pXzOEyXp3Ks9guqxs4rBYopIFC2YKkppt4x00Bkmq8AeWdP5eWz9dTwxeztsp4PVdfRDCssb1IajEkXIaCH9FvKrb6Yc0IMCwt7wbR1QSpM4IOSzHoGUdhmxi392lP23o1TgTm6N4vygJlEOwFILlvTpyFp+qtEMYGaeJ2T7M0EldiP9nYd7fgR1W+Dx6weTdXJWGTkLixV/7DdmMJkgxGTZfa9cE23CRZXpLAN8a2SRwIjfaMfUtQxzZ2dPxUx21TP5oT4pYo6QKGnlxzbbxDhqDBMcwNrbySu2HXSMM66fricHLCTv5/JlXsTyWv9wYQyyvoQvzpeQmkjDHsCBV8gB3WVqumY4HUxBWNCNkRTQGLWtxxB85v3x2d+Gx/XTE5xY3HZWrc8k0l7DOVbU0BU8ktEVAIWh+HJ8Iu8nbdIj6X21aJUW3gUeKXYm9id6zLO5f9OsdZu+ghN1meKUsaItu1OWojOd3aNppMQWJ+3anlKZsjLHneZY5Sdben7MkR+VDOwcZRsu9oSnx3jPCIilesLZhp96/Req8iF21P9h3+/+bV2dYdr2pjkVPRdSqWd6Ij42rdpwzdZxtk2BOnNJafcltknMDx1wfP47PX3ryWgfd16VAgbp03iiXg4qpwvx6va+YKOdN15TVEEhAQN2MkJXRGLSuwxGx1ryiv25NFZ3y79H6deejUytIJCGGmk06Gw8OKaiagpMIcgzfxyJQMuv1HAqnMCf1/YdjuOvBgrncAwJbqX7rz5u0d50O0c/XWpBWmOhhB94E6FJuFRyB2XXpgoelMo9QAhn0mildTzAkJSIxuDEl3F6h6Z7Ej0RuL6LwtYh0awWi63fGkC9G4sarN+KnJLINMl9z6tLzH5ZiHqEW6NFA5C83dkYRGV7kGski8TdLMrljr6dOJ26dmFsUy/BfkBIYSO3pjG1hmS3jZzZ3yFySR8oiZOqVAVt6Z2WpXXvbyFjakfDBQ0tOo7snR380h9gzlw71klxlI8M8ejyBJrqyzda5Gw7new7vZkfmN1LCBx+4oCUUql5OmoZQDFp2wy4miCyaZgwwI/iptFHAxDvHVjohNEube6qFINzliA5o8SqX/wWi6+Fdii6G5GKfN9udMAAALOj3Np+dDuIdrl+G6ZMtwz9QCeKvLaXDueFv33z+VnY/7Pvi/6+gB8SlJBaOp7w5IUXjMJT4ffF/6ehBKtwx8/298PzvA9gV2D6A9d/cRkwLOswTEmAA8uEApGGlkIeVwSQsHyZjWijHTFCCZX43Y1rIwzxhIgxANRyAiVgp6LAyaMTyIQnTQhVmgiIs8/tnTAsazBPyYQBS4AAkYqVQhpVBMZYPRkwL+5CmLkMx9h4m4EthEr4FJmBXIRa7Bio8FlVwB35IVdN5YVlAwdImT6CDnEKi0MD0kYZovdhu+HkZBg5wEtP1+F4sIyAQppyLti8jgQ1MWkYGB1CpLAhMVhLhxFJRWXYyilYKZVC/al4PBggF/+6n6kAPJigHA9RDHfgBk1aYX292S8EfkiEWEiEKCqARiqEA6sEX0qEYqqEcIqEWqqAIsqAYTEf5qoUaEEMA+IF0cczH2mEQBbmQBjGnfCZIe30pNEAVFIBpP9ti1yioBQNMvXtZM7yyJgUZBKbgJJX1LiQ+3lcKmKAWKqAY9D9VNTQQgtom1akUD3J4XU8thfKteQ1QONb0UAvVOXm1UDvRqqAYSrRG8u71B/2VMJVKmu/s+xEIAAA=) format("woff2");
 }
-.try-title span { color: var(--accent); }
+.try { position: relative; padding-top: 86px; }
+.try-note {
+  position: absolute; top: 0; right: 24px; margin: 0;
+  display: flex; align-items: flex-start; gap: 0;
+  color: var(--accent);
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.try-note span {
+  order: 2;
+  font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
+  font-weight: 600; font-size: 34px; line-height: 1;
+  margin: -6px 0 0 -6px;
+  white-space: nowrap;
+}
+.try-note svg { order: 1; margin-top: 4px; }
 
 .hintbar {
   font-size: 12.5px; line-height: 19px; color: #64748b; padding: 9px 20px;
@@ -388,98 +401,6 @@ p { margin: 0 0 14px; }
 .band.tint { background: var(--paper-2); }
 .section-head { max-width: 720px; margin-bottom: 44px; }
 
-/* problem */
-.pains {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
-}
-.pain {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 24px 22px 20px;
-}
-.pain p { color: var(--ink-2); font-size: 15px; margin: 0; }
-.pivot {
-  margin: 44px 0 0;
-  font-size: clamp(20px, 2.4vw, 25px);
-  line-height: 1.35;
-  letter-spacing: -.015em;
-  font-weight: 600;
-  max-width: 820px;
-  text-wrap: balance;
-}
-
-/* attention */
-.attn { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 48px; }
-.attn-item { border-left: 3px solid #c7d2fe; padding: 2px 0 2px 20px; }
-.attn-item p { color: var(--ink-2); font-size: 15px; margin: 0; }
-
-/* how it works */
-.steps {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px;
-  counter-reset: step;
-}
-.step { position: relative; padding-top: 52px; }
-.step::before {
-  counter-increment: step;
-  content: counter(step);
-  position: absolute; top: 0; left: 0;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--accent-bg); color: var(--accent);
-  border: 1px solid #c7d2fe;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 14px;
-}
-.step p { color: var(--ink-2); font-size: 15px; margin: 0; }
-
-/* node legend */
-.types {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
-  margin-top: 48px;
-}
-.type {
-  display: flex; gap: 14px; align-items: flex-start;
-  padding: 18px;
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  background: var(--paper);
-}
-.type svg { flex: none; }
-.type h3 { font-size: 14.5px; margin-bottom: 2px; }
-.type p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.5; }
-
-/* features */
-.features {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-}
-.feature {
-  padding: 28px 26px 26px;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-}
-.feature .ic {
-  width: 36px; height: 36px; border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.feature p { color: var(--ink-2); font-size: 15px; margin: 0; }
-
-/* who it's for */
-.fit {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;
-}
-.fit-card {
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 24px;
-  background: var(--paper);
-}
-.fit-card ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
-.fit-card li { margin: 6px 0; }
-
 /* closing */
 .closing {
   text-align: center;
@@ -549,57 +470,13 @@ h3 { font-family: var(--sans); font-weight: 600; letter-spacing: -.01em; }
 .logo .word { font-family: var(--sans); font-size: 21px; font-weight: 700; letter-spacing: -.025em; }
 
 .band, .band.tint { background: transparent; border-top: 1px solid var(--rule); padding: 112px 0; }
-.section-head { max-width: 860px; margin-bottom: 60px; }
-
-.pain, .fit-card {
-  border: 0; border-top: 2px solid var(--ink); border-radius: 0;
-  background: none; padding: 22px 0 0;
-}
-.pain h3, .attn-item h3, .fit-card h3 {
-  font-size: 21px; font-weight: 500; line-height: 1.2; letter-spacing: -.02em;
-  margin-bottom: 10px;
-}
-.pivot {
-  font-family: var(--sans); font-weight: 400;
-  font-size: clamp(24px, 2.8vw, 34px); line-height: 1.3; letter-spacing: -.02em;
-  margin-top: 84px; max-width: 900px;
-}
-.pivot em { font-style: normal; font-weight: 500; color: var(--accent); }
-
-.attn { gap: 44px 56px; }
-.attn-item { border-left: 0; border-top: 1px solid var(--rule); padding: 22px 0 0; }
-
-.step { padding-top: 0; }
-.step::before {
-  position: static; display: block;
-  width: auto; height: auto;
-  background: none; border: 0; border-radius: 0;
-  font-family: var(--sans); font-weight: 300; letter-spacing: -.04em;
-  font-size: 72px; line-height: 1; color: var(--accent);
-  margin-bottom: 14px;
-}
-.step h3, .feature h3 { font-size: 17px; }
-
-.types { gap: 28px; margin-top: 72px; }
-.type { border: 0; border-top: 1px solid var(--rule); border-radius: 0; background: none; padding: 20px 0 0; }
-
-.ai-kinds { margin-top: 36px; display: flex; align-items: center; flex-wrap: wrap; gap: 14px 36px; }
-.ai-k-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ink); }
-.ai-k-row { display: flex; flex-wrap: wrap; gap: 14px 30px; }
-.ai-k { display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--ink-2); }
-.ai-k svg { flex: none; }
-.ai-k b { color: var(--ink); margin-right: 6px; }
-
-.features { border: 0; gap: 52px 44px; }
-.feature { border: 0; background: none; padding: 0; }
-.feature .ic { width: auto; height: auto; justify-content: flex-start; margin-bottom: 14px; }
-
-.fit { gap: 44px; }
+.section-head { max-width: 1000px; margin-bottom: 60px; }
+.section-head .lead { max-width: none; }
 
 .closing { background: none; border-top: 1px solid var(--rule); padding: 128px 0 136px; }
 .closing h2 { font-size: clamp(42px, 6.4vw, 84px); line-height: 1; }
 
-footer { border-top: 1px solid var(--rule); }
+footer { border-top: 1px solid var(--rule); text-align: center; }
 
 /* Node colours carry the page: each section takes one, from open (orange)
    through to settled (green). Text uses the darker shade of each. */
@@ -613,32 +490,128 @@ footer { border-top: 1px solid var(--rule); }
 [data-c="open"]     { --hl: var(--c-open); }
 [data-c="note"]     { --hl: var(--c-note); }
 [data-c="ai"]       { --hl: var(--c-ai); }
-h2 em, .pivot em { color: var(--hl, var(--accent)); }
+h2 em { color: var(--hl, var(--accent)); }
 .closing h2 em { color: var(--c-captured); }
-.pain { border-top-color: var(--c-open); }
-.attn-item:nth-child(1) { border-top: 2px solid var(--c-captured); }
-.attn-item:nth-child(2) { border-top: 2px solid var(--c-open); }
-.attn-item:nth-child(3) { border-top: 2px solid var(--c-note); }
-.attn-item:nth-child(4) { border-top: 2px solid var(--c-ai); }
-.step:nth-child(1)::before { color: var(--c-open); }
-.step:nth-child(2)::before { color: var(--c-note); }
-.step:nth-child(3)::before { color: var(--c-captured); }
-.fit-card:nth-child(1) { border-top-color: var(--c-ai); }
-.fit-card:nth-child(2) { border-top-color: var(--c-captured); }
+
+/* ── Pain points ────────────────────────────────────── */
+
+.pains { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.pain {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 10px 10px 26px;
+}
+.pain .art {
+  background: var(--paper);
+  border-radius: 12px;
+  padding: 10px 6px 4px;
+  margin-bottom: 20px;
+}
+.pain .art svg { display: block; font-family: var(--sans); }
+.pain h3, .pain p { padding: 0 16px; }
+.pain h3 { font-size: 21px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 6px; }
+.pain p { color: var(--ink-2); font-size: 15.5px; margin: 0; }
+.pain.wide {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px; align-items: center;
+  padding: 10px 26px 10px 10px;
+}
+.pain.wide .art { margin-bottom: 0; }
+
+.vs { margin: 4px 0 0; padding: 0 16px; }
+.vs dt {
+  font-size: 12px; font-weight: 600; letter-spacing: .02em;
+  color: var(--ink-3); margin: 12px 0 2px;
+}
+.vs dd { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.vs dt:nth-of-type(2) { color: var(--c-open); }
+.vs dd:nth-of-type(2) { color: var(--ink); font-weight: 500; }
+
+
+
+.clip-wrap {
+  display: grid; grid-template-columns: 360px minmax(0, 1fr);
+  gap: 72px; align-items: center;
+}
+.clip { margin: 0; aspect-ratio: 9 / 16; display: flex; flex-direction: column; }
+.clip .legend { gap: 12px; padding: 10px 14px 8px; font-size: 11.5px; }
+.clip { pointer-events: none; }
+.clip .canvas { flex: 1; min-height: 0; overflow: hidden; }
+.clip .pop > * { transform-box: fill-box; transform-origin: center; animation: popIn .45s cubic-bezier(.2, .9, .3, 1.25) both; }
+.clip .sheet .wu-act { transition: background-color .15s, border-color .15s, color .15s, transform .15s; }
+.clip .sheet .wu-act.pressed { background: #fef3c7; border-color: #fbbf24; color: #92400e; transform: scale(.95); }
+@keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.clip-copy h2 { margin-bottom: 16px; }
+.backbone { font-size: clamp(22px, 2.4vw, 28px); font-weight: 600; letter-spacing: -.025em; line-height: 1.25; margin: 0 0 12px; }
+.backbone span { color: var(--c-ai); }
+.clip-points { list-style: none; margin: 36px 0 0; padding: 0; }
+.clip-points li {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 0; border-top: 1px solid var(--rule);
+}
+.clip-points i { width: 14px; height: 14px; border-radius: 50%; flex: none; margin-top: 7px; }
+.clip-points b { display: block; font-size: 20px; font-weight: 600; letter-spacing: -.02em; line-height: 1.3; }
+.clip-points span { display: block; font-size: 15.5px; color: var(--ink-2); margin-top: 3px; }
+
+.attn-wrap { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.subhead { font-size: 19px; font-weight: 500; letter-spacing: -.015em; line-height: 1.3; color: var(--ink-3); margin: -4px 0 14px; }
+.people { margin: 0; }
+.people-call {
+  background: #0f131a; border-radius: 18px; padding: 14px 14px 12px;
+  box-shadow: 0 2px 4px rgba(19,25,34,.08), 0 30px 60px -28px rgba(19,25,34,.55);
+}
+.people-call svg { display: block; font-family: var(--sans); }
+.people-bar { display: flex; justify-content: center; gap: 10px; padding-top: 12px; }
+.people-bar span { width: 34px; height: 34px; border-radius: 50%; background: #2a313e; display: flex; align-items: center; justify-content: center; }
+.people-bar .wu-on { background: #fff; }
+.people-bar .leave { width: 46px; border-radius: 17px; background: #dc2626; }
+.attn-wrap h2 { margin-bottom: 18px; }
+
+.checks {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px;
+}
+.checks li {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 22px 0 26px;
+  border-top: 1px solid var(--rule);
+  line-height: 1.45;
+}
+.checks li b { display: block; font-size: 18px; font-weight: 600; letter-spacing: -.015em; margin-bottom: 3px; }
+.checks li span { display: block; font-size: 15px; color: var(--ink-2); }
+.checks li::before {
+  content: "\2713";
+  flex: none;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff;
+  background: #4ade80;
+  transform: translateY(1px);
+}
+.checks li:nth-child(4n+2)::before { background: #f97316; }
+.checks li:nth-child(4n+3)::before { background: #f59e0b; }
+.checks li:nth-child(4n+4)::before { background: #a78bfa; }
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 920px) {
-  .types { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clip-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .clip { width: 100%; max-width: 360px; margin: 0 auto; }
+  .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .attn-wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
 }
 @media (max-width: 680px) {
   .wrap { padding: 0 16px; }
   .hero { padding: 48px 0 32px; }
   .band, .band.tint { padding: 72px 0; }
-  .pivot { margin-top: 56px; }
-  .pains, .steps, .types, .features, .fit, .attn { grid-template-columns: minmax(0, 1fr); }
-  .steps { gap: 28px; }
+  .pains, .checks { grid-template-columns: minmax(0, 1fr); }
+  .try { padding-top: 64px; }
+  .try-note { right: 4px; }
+  .try-note span { font-size: 28px; }
+  .try-note svg { width: 70px; height: 60px; }
+  .pain.wide { grid-template-columns: minmax(0, 1fr); padding: 10px 10px 26px; gap: 20px; }
 }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
@@ -675,19 +648,26 @@ h2 em, .pivot em { color: var(--hl, var(--accent)); }
   <section class="hero">
     <h1>See your meeting <em>while it&rsquo;s still happening.</em></h1>
     <p class="lead">
-      Wrap-Up listens to the conversation and draws it as a <b>live map the whole
-      room shares</b>: what has been settled, what is still open, and what got
-      ignored. Everyone can discuss it, prioritise it and settle it in the moment, not
-      in the recap email a day later.
+      Settle it in the meeting, not in the follow-up meeting. Wrap-Up turns the
+      conversation into a <b>live map the whole room shares</b>, so nothing is left
+      hanging when you hang up.
     </p>
   </section>
 
+
   <!-- ── Live map ────────────────────────────────────────────────────────── -->
   <section class="try" id="try">
-    <h2 class="try-title">Try it <span aria-hidden="true">&darr;</span></h2>
+    <!-- A handwritten aside, pointing down into the Wrap-Up panel. -->
+    <p class="try-note">
+      <span>Try it yourself!</span>
+      <svg width="92" height="78" viewBox="0 0 92 78" aria-hidden="true">
+        <path d="M84 8 C 58 4, 24 14, 16 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"></path>
+        <path d="M6 52 L15 67 L28 56" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </p>
     <!-- A video call on the left, Wrap-Up docked on the right. The call is
          decoration; the panel is the real Board. -->
-    <div class="call">
+    <div class="call" id="try-call">
       <div class="call-bar">
         <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="call-title">Product sync</span>
@@ -733,221 +713,242 @@ h2 em, .pivot em { color: var(--hl, var(--accent)); }
   </section>
 </div>
 
-<!-- ── Why ─────────────────────────────────────────────────────────────── -->
+<!-- ── Same page ───────────────────────────────────────────────────────── -->
+<section class="band" id="same-page" data-c="captured">
+  <div class="wrap clip-wrap">
+    <!-- A self-playing panel, 9:16, driven by the same renderer as the demo. -->
+    <div class="clip stage" aria-label="Wrap-Up filling in during a meeting: points appear under each topic as people talk, open points turn green once settled, and a note is pinned to a topic.">
+      <div class="app-head">
+        <div class="app-brand">
+          <svg width="18" height="18"><use href="#mark"></use></svg>
+          <span class="app-title">Wrap-Up</span>
+        </div>
+        <span class="app-live"><span class="pulse-dot"><i></i><b></b></span>Live</span>
+      </div>
+      <div class="legend">
+        <span class="k"><i class="dot" style="background:#4ade80"></i>Captured</span>
+        <span class="k"><i class="dot" style="background:#f97316"></i>Revisit</span>
+        <span class="k"><i class="dot" style="background:#f59e0b"></i>Note</span>
+        <span class="k"><i class="dot" style="background:#a78bfa"></i>AI</span>
+      </div>
+      <div class="canvas" id="clip-canvas"></div>
+      <div class="sheet" id="clip-sheet"></div>
+    </div>
+
+    <div class="clip-copy">
+      <h2>&ldquo;Are we on the <em>same page?</em>&rdquo;</h2>
+      <p class="backbone">You lead the conversation. <span>AI tracks every point in real time, for everyone in the room.</span></p>
+      <p class="lead">With Wrap-Up, literally. Everyone on the call shares one live map of the conversation.</p>
+      <ul class="clip-points">
+        <li><i style="background:#4ade80"></i><div><b>See what&rsquo;s settled in every topic</b><span>Decisions turn green as the room agrees on them.</span></div></li>
+        <li><i style="background:#fbbf24"></i><div><b>Spot what needs more discussion</b><span>Open points stay orange. Bring one up and it turns yellow for everyone until the room settles it.</span></div></li>
+        <li><i style="background:#f59e0b"></i><div><b>Add notes in context</b><span>Pin a thought to the topic it belongs to, without interrupting anyone.</span></div></li>
+        <li><i style="background:#a78bfa"></i><div><b>AI suggestions</b><span>It flags the question nobody asked or the assumption nobody checked. The room decides what to do with it.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pain points ─────────────────────────────────────────────────────── -->
 <section class="band tint" id="why" data-c="open">
   <div class="wrap">
     <div class="section-head">
-      <h2>Meetings move faster than <em>anyone can keep track of.</em></h2>
-      <p class="lead">
-        Most of what goes wrong with a meeting goes wrong quietly. Nobody notices
-        until after it&rsquo;s over, when the people who could have fixed it have
-        already left the room.
-      </p>
+      <h2>A summary arrives <em>after it&rsquo;s too late.</em></h2>
+      <p class="lead">Notes, AI note-takers and chat recaps only tell you what happened once the call has ended.
+      By then the people who could answer, decide or correct it have already left.
+      <b>Wrap-Up works while they&rsquo;re still in the room.</b></p>
     </div>
 
     <div class="pains">
-      <div class="pain">
-        <h3>A good point gets lost.</h3>
-        <p>Someone raises it, the conversation moves on before anyone answers, and by the end nobody remembers it was ever left open.</p>
-      </div>
-      <div class="pain">
-        <h3>One topic eats the hour.</h3>
-        <p>Nobody can see how long the room has been on it, or how much else is still waiting, until the meeting runs out of time.</p>
-      </div>
-      <div class="pain">
-        <h3>The recap arrives too late.</h3>
-        <p>One person&rsquo;s notes become the record. If they heard it differently than you did, the moment to say so has already passed.</p>
-      </div>
-    </div>
+      <article class="pain">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 280 150" width="100%">
+            <rect x="22" y="34" width="132" height="58" rx="14" fill="#fff" stroke="#e2e8f0"></rect>
+            <path d="M44 92 L40 108 L60 92" fill="#fff" stroke="#e2e8f0" stroke-linejoin="round"></path>
+            <rect x="45" y="90" width="16" height="4" fill="#fff"></rect>
+            <text x="38" y="58" font-size="13" fill="#475569">Do we offer an</text>
+            <text x="38" y="76" font-size="13" fill="#475569">annual discount?</text>
+            <path d="M160 64 C 180 64, 186 80, 200 82" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"></path>
+            <circle class="pulse" cx="222" cy="84" r="22" fill="#f97316"></circle>
+            <text x="222" y="128" text-anchor="middle" font-size="12" font-weight="600" fill="#c2410c">still open</text>
+          </svg>
+        </div>
+        <h3>&ldquo;Wait, did anyone answer that?&rdquo;</h3>
+        <dl class="vs">
+          <dt>After the meeting</dt><dd>The recap lists it as &ldquo;unresolved&rdquo;. The person who knew the answer has logged off.</dd>
+          <dt>With Wrap-Up</dt><dd>It stays orange on screen while they&rsquo;re still on the call.</dd>
+        </dl>
+      </article>
 
-    <p class="pivot">
-      Wrap-Up puts the record <em>in front of the room while the meeting is still running</em>,
-      so it can be checked, corrected and finished before everyone leaves.
-    </p>
+      <article class="pain">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 280 150" width="100%">
+            <circle cx="112" cy="76" r="50" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"></circle>
+            <circle cx="112" cy="76" r="58" fill="none" stroke="#fde3cf" stroke-width="5"></circle>
+            <circle cx="112" cy="76" r="58" fill="none" stroke="#ea580c" stroke-width="5" stroke-linecap="round"
+                    stroke-dasharray="312 365" transform="rotate(-90 112 76)"></circle>
+            <text x="112" y="80" text-anchor="middle" font-size="24" font-weight="600" fill="#9a3412" letter-spacing="-.5">48 min</text>
+            <text x="112" y="98" text-anchor="middle" font-size="11.5" fill="#c2410c">on pricing</text>
+            <circle cx="210" cy="56" r="13" fill="#f1f5f9" stroke="#e2e8f0"></circle>
+            <circle cx="238" cy="80" r="13" fill="#f1f5f9" stroke="#e2e8f0"></circle>
+            <circle cx="210" cy="104" r="13" fill="#f1f5f9" stroke="#e2e8f0"></circle>
+            <text x="224" y="138" text-anchor="middle" font-size="11.5" fill="#94a3b8">still waiting</text>
+          </svg>
+        </div>
+        <h3>&ldquo;We&rsquo;re out of time. Let&rsquo;s schedule another meeting for the rest.&rdquo;</h3>
+        <dl class="vs">
+          <dt>After the meeting</dt><dd>You read that pricing took 48 minutes, and onboarding never came up.</dd>
+          <dt>With Wrap-Up</dt><dd>The room watches the clock run on each topic and moves on in time, so the rest doesn&rsquo;t need a meeting of its own.</dd>
+        </dl>
+      </article>
+
+      <article class="pain">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 280 150" width="100%">
+            <circle cx="40" cy="104" r="15" fill="#f59e0b"></circle><text x="40" y="109" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">M</text>
+            <circle cx="78" cy="104" r="15" fill="#0ea5e9"></circle><text x="78" y="109" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">D</text>
+            <circle cx="116" cy="104" r="15" fill="#ec4899"></circle><text x="116" y="109" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">P</text>
+            <circle cx="40" cy="62" r="14" fill="#14b8a6"></circle><text x="40" y="67" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">S</text>
+            <circle cx="58" cy="44" r="3" fill="#fff" stroke="#cbd5e1"></circle>
+            <circle cx="66" cy="34" r="4.5" fill="#fff" stroke="#cbd5e1"></circle>
+            <rect x="74" y="12" width="64" height="30" rx="15" fill="#fff" stroke="#cbd5e1" stroke-dasharray="3 3"></rect>
+            <text x="106" y="32" text-anchor="middle" font-size="16" fill="#94a3b8" letter-spacing="2">&hellip;</text>
+            <path d="M142 28 C 162 30, 170 44, 172 58" fill="none" stroke="#fcd34d" stroke-width="1.5" stroke-dasharray="3 4"></path>
+            <rect x="146" y="62" width="128" height="62" rx="12" fill="#fff" stroke="#fde68a"></rect>
+            <circle cx="166" cy="84" r="11" fill="#f59e0b" stroke="#b45309" stroke-width="1.2" stroke-dasharray="3 2"></circle>
+            <text x="166" y="89" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">&#9998;</text>
+            <text x="184" y="80" font-size="8.5" font-weight="600" letter-spacing=".5" fill="#b45309">NOTE</text>
+            <text x="184" y="95" font-size="10.5" fill="#1e293b">Check the tour</text>
+            <text x="184" y="109" font-size="10.5" fill="#1e293b">on small screens</text>
+          </svg>
+        </div>
+        <h3>&ldquo;I was going to say something&hellip; but I forgot.&rdquo;</h3>
+        <dl class="vs">
+          <dt>After the meeting</dt><dd>You held the thought so you wouldn&rsquo;t interrupt. By the time there was a gap, it was gone, and the transcript never heard it.</dd>
+          <dt>With Wrap-Up</dt><dd>Drop it in as a note on the topic the moment you think of it, or raise a point with one tap. No interrupting needed.</dd>
+        </dl>
+      </article>
+
+      <article class="pain">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 280 150" width="100%">
+            <g stroke="#e2e8f0" stroke-width="1.5">
+              <path d="M58 34 L118 64"></path><path d="M222 34 L162 64"></path>
+              <path d="M58 118 L118 90"></path><path d="M222 118 L162 90"></path>
+            </g>
+            <circle cx="140" cy="76" r="36" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"></circle>
+            <circle cx="128" cy="68" r="9" fill="#4ade80"></circle>
+            <circle cx="152" cy="70" r="8" fill="#4ade80"></circle>
+            <circle cx="138" cy="91" r="8" fill="#f97316"></circle>
+            <circle cx="46" cy="30" r="14" fill="#f59e0b"></circle><text x="46" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">M</text>
+            <circle cx="234" cy="30" r="14" fill="#0ea5e9"></circle><text x="234" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">D</text>
+            <circle cx="46" cy="122" r="14" fill="#ec4899"></circle><text x="46" y="127" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">P</text>
+            <circle cx="234" cy="122" r="14" fill="#14b8a6"></circle><text x="234" y="127" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">S</text>
+          </svg>
+        </div>
+        <h3>&ldquo;Wait, I thought we decided on this?&rdquo;</h3>
+        <dl class="vs">
+          <dt>After the meeting</dt><dd>Everyone walked out remembering a different decision. The recap lands a day later, and sorting it out takes another meeting.</dd>
+          <dt>With Wrap-Up</dt><dd>A decision turns green on the shared map the moment the room agrees, so everyone leaves with the same version.</dd>
+        </dl>
+      </article>
+
+      <article class="pain wide">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 280 150" width="100%">
+            <circle cx="92" cy="76" r="52" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"></circle>
+            <circle cx="72" cy="60" r="15" fill="#4ade80"></circle>
+            <circle cx="104" cy="56" r="11" fill="#4ade80"></circle>
+            <circle cx="80" cy="96" r="12" fill="#4ade80"></circle>
+            <g class="pulse">
+              <circle cx="116" cy="90" r="16" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 2"></circle>
+              <text x="116" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">&#10022;</text>
+            </g>
+            <path d="M134 84 C 150 78, 156 70, 166 66" fill="none" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="3 4"></path>
+            <rect x="166" y="28" width="106" height="72" rx="10" fill="#fff" stroke="#ddd6fe"></rect>
+            <text x="176" y="45" font-size="8.5" font-weight="600" letter-spacing=".4" fill="#7c3aed">AI SUGGESTION</text>
+            <text x="176" y="62" font-size="10.5" fill="#1e293b">Nobody has</text>
+            <text x="176" y="76" font-size="10.5" fill="#1e293b">mentioned</text>
+            <text x="176" y="90" font-size="10.5" fill="#1e293b">accessibility yet</text>
+          </svg>
+        </div>
+        <div>
+          <h3>&ldquo;Why didn&rsquo;t anyone think of that?&rdquo;</h3>
+          <dl class="vs">
+            <dt>After the meeting</dt><dd>A recap can only summarise what was said. The angle nobody raised isn&rsquo;t in it, and it surfaces weeks later.</dd>
+            <dt>With Wrap-Up</dt><dd>AI suggestions flag the question nobody asked or the assumption nobody checked, while the room can still act on it.</dd>
+          </dl>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- ── Attention ───────────────────────────────────────────────────────── -->
-<section class="band" id="attention" data-c="ai">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Made for the <em>corner of your eye.</em></h2>
-      <p class="lead">
-        In a meeting, your attention belongs to the people talking. Taking notes pulls
-        you out of the conversation, and so does any tool you have to read closely.
-        Wrap-Up is designed to sit at the <b>edge of your attention</b>: you keep
-        listening, and a glance is enough to know where things stand.
-      </p>
-    </div>
+<section class="band tint" id="attention" data-c="ai">
+  <div class="wrap attn-wrap">
+    <figure class="people" aria-label="An illustrated video call: four people smiling and talking, with the Wrap-Up panel open beside them showing a settled topic and the live one.">
+      <div class="people-call">
+        <svg viewBox="0 0 664 332" width="100%" aria-hidden="true"><g><rect x="0" y="0" width="220" height="160" rx="14" fill="#fde7d3"></rect><path d="M58 160 C60 108 160 108 162 160 Z" fill="#f97316"></path><rect x="101" y="92" width="18" height="16" fill="#e9b48a"></rect><circle cx="110" cy="70" r="30" fill="#e9b48a"></circle><path d="M79 68 C77 30 143 30 141 68 C134 52 96 46 79 68 Z" fill="#3b2a20"></path><path d="M95 69 q5 -6 10 0 M115 69 q5 -6 10 0" stroke="#3b2a20" stroke-width="2.4" fill="none" stroke-linecap="round"></path><path d="M98 81 q12 12 24 0" stroke="#3b2a20" stroke-width="2.4" fill="#fff" stroke-linecap="round"></path><circle cx="91" cy="78" r="4.5" fill="#f9a8a8" opacity=".55"></circle><circle cx="129" cy="78" r="4.5" fill="#f9a8a8" opacity=".55"></circle><rect x="10" y="128" width="48" height="22" rx="6" fill="rgba(15,19,26,.55)"></rect><text x="18" y="143" font-size="12" fill="#fff">Maya</text></g><g><rect x="232" y="0" width="220" height="160" rx="14" fill="#dbeafe"></rect><path d="M290 160 C292 108 392 108 394 160 Z" fill="#0ea5e9"></path><rect x="333" y="92" width="18" height="16" fill="#8d5a3b"></rect><circle cx="342" cy="70" r="30" fill="#8d5a3b"></circle><circle cx="318" cy="56" r="11" fill="#1f1a17"></circle><circle cx="328" cy="43" r="11" fill="#1f1a17"></circle><circle cx="342" cy="38" r="11" fill="#1f1a17"></circle><circle cx="356" cy="43" r="11" fill="#1f1a17"></circle><circle cx="366" cy="56" r="11" fill="#1f1a17"></circle><path d="M327 69 q5 -6 10 0 M347 69 q5 -6 10 0" stroke="#3b2a20" stroke-width="2.4" fill="none" stroke-linecap="round"></path><path d="M330 81 q12 12 24 0" stroke="#3b2a20" stroke-width="2.4" fill="#fff" stroke-linecap="round"></path><circle cx="323" cy="78" r="4.5" fill="#f9a8a8" opacity=".55"></circle><circle cx="361" cy="78" r="4.5" fill="#f9a8a8" opacity=".55"></circle><rect x="242" y="128" width="64" height="22" rx="6" fill="rgba(15,19,26,.55)"></rect><text x="250" y="143" font-size="12" fill="#fff">Daniel</text><rect x="233.5" y="1.5" width="217" height="157" rx="13" fill="none" stroke="#4ade80" stroke-width="3"></rect></g><g><rect x="0" y="172" width="220" height="160" rx="14" fill="#fce7f3"></rect><path d="M58 332 C60 280 160 280 162 332 Z" fill="#ec4899"></path><rect x="101" y="264" width="18" height="16" fill="#f1c7a3"></rect><rect x="76" y="222" width="68" height="56" rx="26" fill="#7a4a2a"></rect><circle cx="110" cy="242" r="30" fill="#f1c7a3"></circle><path d="M80 238 C80 202 140 202 140 238 C122 220 98 220 80 238 Z" fill="#7a4a2a"></path><path d="M95 241 q5 -6 10 0 M115 241 q5 -6 10 0" stroke="#3b2a20" stroke-width="2.4" fill="none" stroke-linecap="round"></path><path d="M98 253 q12 12 24 0" stroke="#3b2a20" stroke-width="2.4" fill="#fff" stroke-linecap="round"></path><circle cx="91" cy="250" r="4.5" fill="#f9a8a8" opacity=".55"></circle><circle cx="129" cy="250" r="4.5" fill="#f9a8a8" opacity=".55"></circle><rect x="10" y="300" width="56" height="22" rx="6" fill="rgba(15,19,26,.55)"></rect><text x="18" y="315" font-size="12" fill="#fff">Priya</text></g><g><rect x="232" y="172" width="220" height="160" rx="14" fill="#dcfce7"></rect><path d="M290 332 C292 280 392 280 394 332 Z" fill="#14b8a6"></path><rect x="333" y="264" width="18" height="16" fill="#c58c62"></rect><circle cx="342" cy="242" r="30" fill="#c58c62"></circle><circle cx="342" cy="202" r="11" fill="#2d2420"></circle><path d="M312 238 C312 204 372 204 372 238 C360 222 324 222 312 238 Z" fill="#2d2420"></path><path d="M327 241 q5 -6 10 0 M347 241 q5 -6 10 0" stroke="#3b2a20" stroke-width="2.4" fill="none" stroke-linecap="round"></path><path d="M330 253 q12 12 24 0" stroke="#3b2a20" stroke-width="2.4" fill="#fff" stroke-linecap="round"></path><circle cx="323" cy="250" r="4.5" fill="#f9a8a8" opacity=".55"></circle><circle cx="361" cy="250" r="4.5" fill="#f9a8a8" opacity=".55"></circle><rect x="242" y="300" width="40" height="22" rx="6" fill="rgba(15,19,26,.55)"></rect><text x="250" y="315" font-size="12" fill="#fff">Sam</text></g><g transform="translate(464 0)">
+          <rect width="200" height="332" rx="14" fill="#fff"></rect>
+          <g transform="translate(14 20)">
+            <use href="#mark" width="16" height="16" y="-12"></use>
+            <text x="22" y="1" font-size="12" font-weight="600" fill="#1e293b">Wrap-Up</text>
+            <circle cx="150" cy="-3" r="3" fill="#6366f1"></circle>
+            <text x="157" y="1" font-size="9.5" fill="#64748b">Live</text>
+          </g>
+          <line x1="0" y1="34" x2="200" y2="34" stroke="#e2e8f0"></line>
 
-    <div class="attn">
-      <div class="attn-item">
-        <h3>A glance, not a read</h3>
-        <p>Colour says whether a point is settled or open. Size says how much it matters. The halo shows where the room is right now. You can take it in without reading a single word.</p>
-      </div>
-      <div class="attn-item">
-        <h3>Nobody has to take notes</h3>
-        <p>Wrap-Up does the capturing, so no one spends the meeting typing. Everyone stays in the discussion, including the person who usually writes it all down.</p>
-      </div>
-      <div class="attn-item">
-        <h3>Quiet until you need it</h3>
-        <p>New points fade in gently and the view follows the conversation on its own. Nothing asks for a click. When you do want to step in, one click on a node is all it takes.</p>
-      </div>
-      <div class="attn-item">
-        <h3>The room looks at the same thing</h3>
-        <p>Because everyone shares one map, attention gathers around what is still open, instead of being spread across private notes, side chats and memories of what was said.</p>
-      </div>
-    </div>
-  </div>
-</section>
+          <!-- settled topic -->
+          <text x="100" y="62" text-anchor="middle" font-size="10.5" fill="#94a3b8">Launch date</text>
+          <g transform="translate(100 112)" opacity=".6">
+            <circle r="40" fill="#f0fdf4" stroke="#4ade80" stroke-opacity=".6" stroke-width="1.5"></circle>
+            <circle cx="-13" cy="-10" r="11" fill="#4ade80"></circle>
+            <circle cx="13" cy="-8" r="9" fill="#4ade80"></circle>
+            <circle cx="-2" cy="15" r="10" fill="#4ade80"></circle>
+            <text y="4" text-anchor="middle" font-size="13" fill="#16a34a">&#10003;</text>
+          </g>
+          <line x1="100" y1="152" x2="100" y2="186" stroke="#e2e8f0"></line>
 
-<!-- ── How it works ────────────────────────────────────────────────────── -->
-<section class="band tint" id="how" data-c="captured">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>It listens. It maps. <em>The room decides.</em></h2>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <h3>It listens</h3>
-        <p>Wrap-Up follows the conversation as it happens and picks out each point being made: a decision, a question, a concern, a next step.</p>
+          <!-- live topic -->
+          <text x="100" y="186" text-anchor="middle" font-size="12" font-weight="700" fill="#4338ca">Pricing</text>
+          <g transform="translate(100 250)">
+            <circle class="halo" r="62" fill="#6366f1" opacity=".06"></circle>
+            <circle r="50" fill="#eef2ff" stroke="#6366f1" stroke-opacity=".9" stroke-width="2"></circle>
+            <circle class="breathe" r="54" fill="none" stroke="#6366f1" stroke-width="2"></circle>
+            <circle cx="-16" cy="-14" r="14" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"></circle>
+            <circle cx="16" cy="-12" r="10" fill="#4ade80"></circle>
+            <circle cx="14" cy="16" r="11" fill="#f97316"></circle>
+            <circle cx="-14" cy="18" r="9" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="3 2"></circle>
+          </g>
+        </g></svg>
+        <div class="people-bar" aria-hidden="true">
+          <span></span><span></span><span class="wu-on"><svg width="16" height="16"><use href="#mark"></use></svg></span><span class="leave"></span>
+        </div>
       </div>
-      <div class="step">
-        <h3>It draws the map</h3>
-        <p>Each point becomes a node, grouped under the topic the room was on. Topics stack down the page, and a halo marks where the meeting is right now.</p>
-      </div>
-      <div class="step">
-        <h3>The room responds</h3>
-        <p>Anyone can click a node to raise it, lower it, bring it up for discussion, or ignore it. Everyone sees every change at the same time.</p>
-      </div>
-    </div>
-
-    <div class="types">
-      <div class="type">
-        <svg width="36" height="36" viewBox="-18 -18 36 36"><circle r="16" fill="#4ade80"></circle></svg>
-        <div><h3>Captured</h3><p>A point the room has settled.</p></div>
-      </div>
-      <div class="type">
-        <svg width="36" height="36" viewBox="-18 -18 36 36"><circle r="16" fill="#f97316"></circle></svg>
-        <div><h3>Revisit suggested</h3><p>Raised but not resolved. Worth coming back to.</p></div>
-      </div>
-      <div class="type">
-        <svg width="36" height="36" viewBox="-18 -18 36 36"><circle r="15" fill="#f59e0b" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3 2"></circle><text text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="700" fill="#fff">&#9998;</text></svg>
-        <div><h3>Note</h3><p>Added by someone in the room, visible to everyone.</p></div>
-      </div>
-      <div class="type">
-        <svg width="36" height="36" viewBox="-18 -18 36 36"><circle r="15" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 2"></circle><text text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="700" fill="#fff">?</text></svg>
-        <div><h3>AI suggestion</h3><p>Something the room may have missed. Dashed, so you always know it wasn&rsquo;t said aloud.</p></div>
-      </div>
-    </div>
-
-    <div class="ai-kinds">
-      <p class="ai-k-title">AI suggestions come in three kinds</p>
-      <div class="ai-k-row" id="ai-kinds"></div>
+    </figure>
+    <div>
+      <h2>Eyes on people, <em>not on notes.</em></h2>
+      <p class="subhead">Nobody has to write anything down.</p>
+      <p class="lead">You don&rsquo;t have to track every decision or scramble to take notes while the meeting moves on. Wrap-Up keeps up for you at the edge of your attention, and quietly flags anything that needs you, so a glance tells you where things stand.</p>
     </div>
   </div>
 </section>
 
 <!-- ── Features ────────────────────────────────────────────────────────── -->
-<section class="band" id="features" data-c="open">
+<section class="band" id="features" data-c="note">
   <div class="wrap">
     <div class="section-head">
-      <h2>Everything the room needs to <em>finish the meeting it started.</em></h2>
+      <h2>No more <em>&ldquo;so&hellip; what did we decide?&rdquo;</em></h2>
     </div>
-
-    <div class="features">
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#16a34a" stroke-width="2"></circle><circle cx="10" cy="10" r="2.5" fill="#16a34a"></circle></svg>
-        </div>
-        <h3>A live map, not a transcript</h3>
-        <p>Points are grouped by topic as they come up. You can take in a whole meeting at a glance instead of scrolling through a wall of text.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="7" cy="10" r="4.5" fill="#4ade80"></circle><circle cx="14" cy="10" r="4.5" fill="#f97316"></circle></svg>
-        </div>
-        <h3>Settled vs. open, at a glance</h3>
-        <p>Green is done and orange still needs work. When a topic is fully settled, its group dims and gets a green tick, so it&rsquo;s obvious what&rsquo;s left.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="#64748b" stroke-width="1.8"></circle><path d="M10 5.5 V10 L13 12" stroke="#64748b" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg>
-        </div>
-        <h3>Time on every topic</h3>
-        <p>Each group shows how long it has held the floor, so the room can tell when it&rsquo;s time to move on.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="6" cy="7" r="3" fill="#ea580c"></circle><circle cx="14" cy="7" r="3" fill="#ea580c" opacity=".55"></circle><path d="M1.5 16c.8-2.6 2.5-4 4.5-4s3.7 1.4 4.5 4M9.5 16c.8-2.6 2.5-4 4.5-4s3.7 1.4 4.5 4" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-linecap="round"></path></svg>
-        </div>
-        <h3>One shared picture</h3>
-        <p>Importance, ignored items, the point under discussion and every note are shared live, so the whole room is literally on the same page.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><text x="10" y="15" text-anchor="middle" font-size="15" font-weight="700" fill="#b45309">&#9998;</text></svg>
-        </div>
-        <h3>Notes pinned to topics</h3>
-        <p>Add context, a reminder or a parking-lot item right where it belongs. It stays attached to the topic it&rsquo;s about.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="3 2"></circle></svg>
-        </div>
-        <h3>AI that suggests, never decides</h3>
-        <p>Wrap-Up can flag a question nobody asked or a check worth making. Suggestions are clearly marked, and the room decides whether to take them up.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#e2e8f0" stroke-width="2"></circle><circle cx="3.5" cy="10" r="2.8" fill="#fed7aa"></circle></svg>
-        </div>
-        <h3>Ignored, never lost</h3>
-        <p>Ignored items move to the edge of their group instead of disappearing. One click on Revisit brings them back if they turn out to matter.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="#fbbf24"></circle></svg>
-        </div>
-        <h3>One thing at a time</h3>
-        <p>Bring any node up for discussion and it&rsquo;s highlighted for everyone. Mark it done when the room is finished and move on.</p>
-      </div>
-      <div class="feature">
-        <div class="ic">
-          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 3 V15 M5 10 L10 15 L15 10" stroke="#ea580c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </div>
-        <h3>Follows the conversation</h3>
-        <p>The view keeps up with the live topic. Scroll back to reread something and it waits for you before following again.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Who it's for ────────────────────────────────────────────────────── -->
-<section class="band tint" data-c="ai">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Built for meetings where <em>something has to get decided.</em></h2>
-    </div>
-    <div class="fit">
-      <div class="fit-card">
-        <h3>Teams that make decisions together</h3>
-        <ul>
-          <li>Product and design reviews</li>
-          <li>Planning and prioritisation sessions</li>
-          <li>Cross-team syncs with lots of open threads</li>
-        </ul>
-      </div>
-      <div class="fit-card">
-        <h3>Whoever is running the room</h3>
-        <ul>
-          <li>See what&rsquo;s still open before time runs out</li>
-          <li>Let quieter people flag what matters to them</li>
-          <li>Walk out with an agreed picture, not a draft to chase</li>
-        </ul>
-      </div>
-    </div>
+    <ul class="checks">
+      <li><div><b>Nothing left hanging</b><span>Open points stay visible until someone settles them.</span></div></li>
+      <li><div><b>Time spent where it matters</b><span>See how long each topic runs while you can still change course.</span></div></li>
+      <li><div><b>Every voice counts</b><span>Anyone can raise a point or add a note without having to interrupt.</span></div></li>
+      <li><div><b>Everyone stays present</b><span>Nobody has to be the note-taker, so nobody misses the meeting.</span></div></li>
+      <li><div><b>Decisions everyone agreed to</b><span>The room confirms what was settled before it leaves.</span></div></li>
+      <li><div><b>Action items, already written</b><span>A short wrap-up when the call ends: decisions, action items and who owns them.</span></div></li>
+    </ul>
   </div>
 </section>
 
@@ -963,7 +964,7 @@ h2 em, .pivot em { color: var(--hl, var(--accent)); }
 </section>
 
 <footer>
-  <div class="wrap">Wrap-Up</div>
+  <div class="wrap">Wrap-Up 2026</div>
 </footer>
 
 <script>
@@ -1723,15 +1724,99 @@ function setupCall() {
 setupCall();
 
 
-/* The three AI kinds, drawn with the product's own node renderer. */
-document.getElementById("ai-kinds").innerHTML = [
-  { sub: "owner_less",        t: "Ask",  s: "a question for the room" },
-  { sub: "assumption",        t: "Flag", s: "an unchecked assumption" },
-  { sub: "missing_dimension", t: "Add",  s: "something nobody raised" }
-].map(function (c) {
-  var it = { id: "g-" + c.sub, type: "ai", ai_subtype: c.sub, text: "", importance: "medium" };
-  return '<span class="ai-k">' + nodeFigure(it, { box: 46 }) + "<span><b>" + c.t + "</b>" + c.s + "</span></span>";
-}).join("");
+/* ═══════════════════════════════════════════════════════════════════════════
+   The clip — a meeting filling in on its own, then looping
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+function setupClip() {
+  var canvas = document.getElementById("clip-canvas");
+  var clip = new Board(canvas, { sheet: document.getElementById("clip-sheet") });
+  var t = 0, fresh = [];
+
+  function reset() {
+    t = 0;
+    clip.card = null;
+    clip.justResolved = {};
+    clip.state = { groups: [], overrides: { importance: {}, resolved: {}, ignored: {}, revisit: {}, discussing: null, notes: {}, focus: null } };
+    canvas.scrollTop = 0;
+  }
+  function group(id, label) { clip.state.groups.push({ id: id, label: label, items: [] }); }
+  function add(gid, it) {
+    it.created_at = ++t;
+    it.importance = it.importance || "medium";
+    clip.state.groups.filter(function (g) { return g.id === gid; })[0].items.push(it);
+    fresh.push(it.id);
+  }
+  function note(gid, text) {
+    var id = "note-" + gid + "-t1-a";
+    clip.state.overrides.notes[id] = text;
+    fresh.push(id);
+  }
+  function open(id) { clip.card = { id: id, y: 0, scrollTop: canvas.scrollTop, viewportH: canvas.clientHeight }; }
+  function press(act) {
+    var b = document.querySelector('#clip-sheet [data-act="' + act + '"]');
+    if (b) b.classList.add("pressed");
+  }
+  var ov = function () { return clip.state.overrides; };
+
+  function focus(gid) { ov().focus = gid; }
+  function discuss(id) { ov().discussing = id; }
+  function settle(id) { ov().discussing = null; ov().resolved[id] = true; clip.justResolved[id] = true; clip.card = null; }
+
+  /* [what happens, how long to hold it, true = no redraw (a button press)] */
+  var STEPS = [
+    [function () { group("c-launch", "Launch date"); add("c-launch", { id: "c1", type: "concluded", text: "Beta goes to 500 users first", importance: "high" }); }, 700],
+    [function () { add("c-launch", { id: "c2", type: "concluded", text: "Public launch on March 12" }); }, 600],
+    [function () { add("c-launch", { id: "c3", type: "concluded", text: "Support is staffed for launch week", importance: "low" }); }, 600],
+    [function () { add("c-launch", { id: "c4", type: "concluded", text: "Press kit ready a week before" }); }, 800],
+
+    [function () { group("c-pricing", "Pricing"); add("c-pricing", { id: "c5", type: "open", text: "Do we offer an annual discount?", importance: "high" }); }, 700],
+    [function () { add("c-pricing", { id: "c6", type: "concluded", text: "Free plan keeps three projects" }); }, 600],
+    [function () { add("c-pricing", { id: "c7", type: "open", text: "What about student pricing?", importance: "low" }); }, 600],
+    [function () { open("c5"); }, 800],
+    [function () { press("discuss"); }, 300, true],
+    [function () { discuss("c5"); }, 1400],
+    [function () { press("resolve"); }, 300, true],
+    [function () { settle("c5"); }, 900],
+    [function () { add("c-pricing", { id: "c8", type: "concluded", text: "Team plan is billed per seat", importance: "low" }); }, 800],
+
+    [function () { group("c-onboarding", "Onboarding"); add("c-onboarding", { id: "c9", type: "concluded", text: "Drop the email confirmation step" }); }, 700],
+    [function () { add("c-onboarding", { id: "c10", type: "concluded", text: "Tour gets cut to three steps", importance: "high" }); }, 600],
+    [function () { add("c-onboarding", { id: "c11", type: "open", text: "Who rewrites the welcome email?" }); }, 1000],
+
+    /* the room goes back to pricing */
+    [function () { focus("c-pricing"); clip.render(); clip.scrollToFocus(); }, 900, true],
+    [function () { open("c7"); }, 800],
+    [function () { press("discuss"); }, 300, true],
+    [function () { discuss("c7"); }, 1400],
+    [function () { press("resolve"); }, 300, true],
+    [function () { settle("c7"); }, 1000],
+    [function () { focus(null); }, 700],
+    [function () { add("c-onboarding", { id: "c12", type: "concluded", text: "Welcome email ships with the beta" }); }, 2400]
+  ];
+
+  var at = 0;
+  function tick() {
+    if (at === 0) reset();
+    var step = STEPS[at];
+    fresh = [];
+    step[0]();
+    if (!step[2]) {
+      clip.render();
+      fresh.forEach(function (id) {
+        var g = canvas.querySelector('[data-item-id="' + id + '"]');
+        if (g) g.classList.add("pop");
+      });
+      if (!clip.card && !ov().focus) canvas.scrollTo({ top: canvas.scrollHeight, behavior: "smooth" });
+    }
+    at = (at + 1) % STEPS.length;
+    setTimeout(tick, step[1]);
+  }
+  tick();
+}
+
+setupClip();
+
 var playCanvas = document.getElementById("play-canvas");
 new Board(playCanvas, { sheet: document.getElementById("play-sheet") });
 playCanvas.scrollTop = playCanvas.scrollHeight;
