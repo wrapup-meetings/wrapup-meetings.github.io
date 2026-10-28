@@ -21,8 +21,9 @@ push — Pages redeploys in a minute.
   `<head>`; swap it for a form or scheduling URL if you get one. If no email app
   takes over within about a second, a small panel shows the address with a
   button to copy it.
-- **Scrolling.** On desktop, through Challenges and With WrapUp, one scroll
-  gesture moves exactly one step (the `stops` list in the script).
+- **Scrolling.** On desktop, from Challenges to the end of the page, one
+  scroll gesture moves exactly one step (the `stops` list in the script):
+  each challenge, each solution, Our Approach, the comparison, the closing.
 - **Hero art.** Drawn in the browser, not an image (the "Hero art" block in
   `index.html`'s script): scattered ideas gather into topic groups sized and
   packed by the map's own rules, the last topic live. It loops on a 6-second

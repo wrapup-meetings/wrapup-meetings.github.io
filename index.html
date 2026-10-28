@@ -414,7 +414,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   .grid > * { grid-column: 1 / -1 !important; }
   .intro-text { margin-top: 24px; max-width: 30em; }
   .intro .grid { grid-template-rows: none; }
-  .art { grid-row: auto; margin: 28px auto 0; width: 100%; max-width: 420px; min-height: 0; height: min(84vw, 380px); }
+  .art { grid-row: auto; order: -1; margin: 0 auto 8px; width: 100%; max-width: 420px; min-height: 0; height: min(78vw, 340px); }
   .intro h1 { font-size: clamp(88px, 22vw, 168px); }
 
   
@@ -570,7 +570,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
               </ul>
             </div>
             <figure class="sol-fig">
-              <div class="frame frame-shot frame-free"><picture><source media="(max-width: 640px)" srcset="assets/product/clarity-m.webp" width="1170" height="2340"><img src="assets/product/clarity.webp" width="2280" height="1680" loading="lazy" decoding="async"
+              <div class="frame frame-shot frame-free"><picture><source media="(max-width: 640px)" srcset="assets/product/clarity-m.webp" width="1170" height="2580"><img src="assets/product/clarity.webp" width="2280" height="1680" loading="lazy" decoding="async"
                    alt="The live topic New pricing plan on the WrapUp map, with four captured and two open points. Two cards are open: a decision, Keep the free plan at three projects, and an open question, Do we offer an annual discount?, with the choice to discuss it or set it aside."></picture></div>
             </figure>
           </article>
@@ -759,8 +759,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   // Challenges. On desktop (with motion) the section pins for a short stretch
   // and scrolling opens the panels in turn: all equal at first, then 01, 02,
   // 03. Clicking a heading jumps to its point in the stretch; keyboard focus
-  // opens it too. Stacked (phones, reduced motion), the panel crossing the
-  // middle of the screen opens, and tapping a heading toggles it. Arrow keys,
+  // opens it too. Stacked (phones, reduced motion), tapping a heading toggles it. Arrow keys,
   // Home and End move between headings; Escape collapses.
   const acc = document.querySelector('[data-acc]');
   const chSec = document.getElementById('challenges');
@@ -818,12 +817,9 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     e.preventDefault();
     accBtns[(to + n) % n].focus();
   });
-  if (motion && 'IntersectionObserver' in window) {
-    const chCenter = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting && !chStaged()) openItem(e.target);
-    }), { rootMargin: '-45% 0px -45% 0px' });
-    accItems.forEach(it => chCenter.observe(it));
-  }
+  // Stacked (phones): panels change only when tapped, so the page never
+  // resizes under a scrolling finger. The first one starts open.
+  if (!chStaged()) openItem(accItems[0]);
 
   // How WrapUp helps. On desktop (with motion) the section is one sticky stage:
   // where you are in its scroll length picks the state shown. Elsewhere the
@@ -885,15 +881,18 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   }));
   // Desktop: through Challenges and With WrapUp, one scroll moves one step,
   // however far the wheel or trackpad travels. The stops, in order: challenges
-  // (all equal), each challenge, each solution, then Our Approach. Outside
-  // that run, and with reduced motion or on phones, scrolling is untouched.
-  const apHead = document.querySelector('.ap-head');
+  // (all equal), each challenge, each solution, Our Approach, the comparison,
+  // the closing, then the very end. Above that run, and with reduced motion
+  // or on phones, scrolling is untouched.
+  const later = ['.ap-head', '.ap-cmp', '.closing'].map(q => document.querySelector(q));
   const stops = () => {
     const pad = 72, ct = chTop(), cl = chLen(), st = solTop(), sl = stageLen();
+    const end = document.documentElement.scrollHeight - innerHeight;
     return [ct - pad, ...OPENS.map(o => ct + cl * (o + .15)), st - pad, st + sl * 1.5, st + sl * 2.5,
-            apHead.getBoundingClientRect().top + scrollY - pad].map(Math.round);
+            ...later.map(el => el.getBoundingClientRect().top + scrollY - pad), end]
+      .map(v => Math.round(Math.min(v, end)));
   };
-  let stepping = false, lastStep = 0, lastWheel = 0, lastDelta = 0;
+  let stepping = false, lastStep = 0, lastWheel = 0, lastDelta = 0, captured = false;
   const stepTo = y => {
     stepping = true; lastStep = performance.now();
     const root = document.documentElement;
@@ -922,12 +921,10 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     const fresh = now - lastWheel > 180 || Math.abs(d) > Math.abs(lastDelta) * 1.6 + 4;
     lastWheel = now; lastDelta = d;
     if (!d) return;
-    if (!fresh) {
-      const S = staged() ? stops() : null;
-      if (S && scrollY > S[0] - 4 && scrollY < S[S.length - 1] + 4 && (stepping || now - lastStep < 700)) e.preventDefault();
-      return;
-    }
-    step(Math.sign(d), e);
+    // the rest of a gesture (trackpad momentum) that already moved one step
+    // is swallowed, however long it runs
+    if (!fresh) { if (captured && staged()) e.preventDefault(); return; }
+    captured = step(Math.sign(d), e);
   }, { passive: false });
   addEventListener('keydown', e => {
     if (e.target.closest('input, textarea, select, [contenteditable]')) return;
@@ -998,8 +995,8 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
     const mixHex = (a, b, k) => { const A = rgb(a), B = rgb(b); return 'rgb(' + A.map((v, i) => Math.round(lerp(v, B[i], k))).join(',') + ')'; };
     let W = 0, H = 0, S = 0;
-    // clicking a topic makes it the live one (the halo glides over to it)
-    let live = 2, lastT = null, lastShown = 0, seek = null;
+    const live = 2;   // Next steps is the live topic
+    let lastShown = 0, seek = null;
     const mix = [0, 0, 1];
 
     const size = () => {
@@ -1024,7 +1021,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
       const sc = k;   // topics hold their size; only the points travel
       const w = TAU * t / L;   // loop phase: every wobble below repeats exactly once per loop
       const T = topics.map(tp => ({ ...tp, ...P(tp.x, tp.y), R: tp.R0 * sc }));
-      lastT = T; lastShown = shown;
+      lastShown = shown;
       const pos = nodes.map(n => {
         const tp = T[n.ti];
         const m = P(n.bx + .03 * Math.sin(w * 2 + n.ph) + .015 * Math.sin(w * 3 + n.ph * 2),
@@ -1113,19 +1110,12 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     }
     addEventListener('resize', () => { size(); if (!motion) draw(3); });
 
-    // Clicking the map: on a topic, it becomes the live one and the map stays a
-    // little longer; while it is still a cloud, the map forms straight away.
-    const hit = e => {
-      if (!lastT || lastShown < .5) return -1;
-      const r = art.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-      return lastT.findIndex(tp => Math.hypot(x - tp.x, y - tp.y) <= tp.R + 8);
-    };
-    art.addEventListener('pointermove', e => { art.style.cursor = (hit(e) >= 0 || lastShown < .5) ? 'pointer' : ''; });
-    art.addEventListener('click', e => {
-      const i = hit(e);
-      if (i >= 0) { live = i; if (seek) seek(2); }
-      else if (lastShown < .5 && seek) seek(1.2);
-      if (!motion) draw(3);
+    // Clicking switches the view: the map scatters back into ideas, or the
+    // ideas gather into the map. The loop carries on from there.
+    art.style.cursor = 'pointer';
+    art.addEventListener('click', () => {
+      if (!seek) return;
+      seek(lastShown >= .5 ? 5 : 1.2);
     });
   }
 
