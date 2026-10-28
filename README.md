@@ -4,11 +4,32 @@ GitHub Pages site for Wrap-Up.
 
 | URL | File | What it is |
 |---|---|---|
-| `https://wrapup-meetings.github.io/` | `index.html` | Home — product one-pager for prospective customers: motivation, the live map to try (the demo's Board, copied in), features |
+| `https://wrapup-meetings.github.io/` | `index.html` | Home — landing page: challenges, how WrapUp helps, our approach, comparison, demo request |
+| `https://wrapup-meetings.github.io/info` | `info/index.html` | Previous home: product one-pager with the live map to try (the demo's Board, copied in) |
 | `https://wrapup-meetings.github.io/demo` | `demo/index.html` | Participant familiarization page for the meeting-map interface |
 
-Every page is a single self-contained HTML file: no build step, no dependencies,
-no external requests. Edit the file, commit, push — Pages redeploys in a minute.
+Every page is a single HTML file: no build step, no dependencies, no external
+requests. The home page also loads its fonts (Newsreader, IBM Plex Sans, IBM Plex Mono — all
+SIL OFL, self-hosted) and product screenshots from `assets/`. Edit, commit,
+push — Pages redeploys in a minute.
+
+## Home page
+
+- **Demo requests.** Every "Request a Demo" button opens an email to
+  wrapup.iui@gmail.com with the subject and a short request template filled in.
+  The link is `window.WRAPUP_DEMO_HREF`, set once near the top of `index.html`'s
+  `<head>`; swap it for a form or scheduling URL if you get one.
+- **Hero art.** Drawn in the browser, not an image (the "Hero art" block in
+  `index.html`'s script): scattered ideas gather into topic groups sized and
+  packed by the map's own rules, the last topic live. It loops, scatters as you
+  scroll away, and is a still frame with reduced motion.
+- **Product images.** In `assets/product/`: `call` / `call-narrow` (WrapUp
+  beside a video call, from `info/`), and `clarity` and `ai-1`–`ai-3`, drawn
+  with the demo's own renderer (`nodeSVG`, `packItems`, `cardBlock` in
+  `demo/index.html`) on a transparent background. `og.png` is the social preview.
+- **Motion.** The Challenges and With WrapUp sections pin while you scroll
+  through their states; other sections snap into place on desktop. With
+  reduced motion everything is static and stacked.
 
 ## First-time setup
 
