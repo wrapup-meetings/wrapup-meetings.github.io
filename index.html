@@ -272,20 +272,28 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
 .ai-stage img { transition: opacity .5s ease; }
 .ai-stage img:not([data-ai="0"]) { position: absolute; left: 0; top: 0; }
 .ai-stage img:not(.on) { opacity: 0; }
-.ai-tabs { position: absolute; z-index: 2; display: flex; gap: 4px; }
+.ai-tabs { position: absolute; z-index: 2; display: flex; gap: 4px; left: var(--l); top: var(--t); }
 .ai-tabs button { padding: 2px 6px 4px; border: 0; background: none; font: 500 11.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .5); cursor: pointer; transition: color .25s ease; }
 .ai-tabs button + button::before { content: '\00b7'; display: inline-block; margin-right: 10px; color: rgba(255, 255, 255, .4); text-decoration: none; }
 .ai-tabs button.on { color: var(--white); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
 .ai-tabs button:hover { color: var(--white); }
-.ai-node { position: absolute; z-index: 2; width: 6.39%; height: 8.68%; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+.ai-node { position: absolute; z-index: 2; left: var(--l); top: var(--t); width: 6.39%; height: 8.68%; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
 .ai-node:hover { box-shadow: 0 0 0 3px rgba(255, 255, 255, .55); }
+@media (max-width: 860px) {
+  .frame-shot { aspect-ratio: auto; }
+  .frame-shot img { width: 100%; height: auto; max-height: none; }
+}
+@media (max-width: 640px) {
+  .ai-tabs, .ai-node { left: var(--lm); top: var(--tm); }
+  .ai-node { width: 12%; height: 8.36%; }
+}
 .ai-stage button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .frame-shot img[src$="call.webp"], .frame-shot source + img { border-radius: 14px; }
 .frame-shot picture { display: contents; }
 .sol-fig figcaption { margin-top: 12px; color: var(--ink-2); }
 .sol-nav { display: none; }
 .m .sol { transition: opacity .5s ease; }
-.m .sols-stacked .sol:not(.on) { opacity: .4; }
+@media (min-width: 861px) { .m .sols-stacked .sol:not(.on) { opacity: .4; } }
 
 /* Desktop with motion: one sticky stage; scrolling through the section moves
    it through the three states. The outgoing state fades before the next one
@@ -406,7 +414,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   .grid > * { grid-column: 1 / -1 !important; }
   .intro-text { margin-top: 24px; max-width: 30em; }
   .intro .grid { grid-template-rows: none; }
-  .art { grid-row: auto; margin-top: 24px; min-height: 0; height: min(92vw, 440px); }
+  .art { grid-row: auto; margin: 28px auto 0; width: 100%; max-width: 420px; min-height: 0; height: min(84vw, 380px); }
   .intro h1 { font-size: clamp(88px, 22vw, 168px); }
 
   
@@ -438,14 +446,21 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
 
 @media (max-width: 640px) { .ap-cmp h3, .challenges h2 { white-space: normal; } }
 
-/* Phones: the matrix scrolls sideways with the approach names pinned. */
+/* Phones: each approach is its own block, its four emphases listed with
+   their circles, so nothing scrolls sideways. */
 @media (max-width: 640px) {
-  .matrix { table-layout: fixed; width: 640px; min-width: 0; }
-  .matrix thead th:first-child { width: 180px; }
-  .matrix thead th:not(:first-child) { width: 115px; }
-  .matrix tbody th { position: sticky; left: 0; z-index: 1; background: var(--paper); padding-right: 12px; }
-  .matrix tr.wu th { background: var(--soft); }
-  .matrix .grp { font-size: 18px; }
+  .table-wrap { overflow: visible; }
+  .matrix, .matrix tbody, .matrix tr, .matrix th, .matrix td { display: block; width: auto; min-width: 0; }
+  .matrix thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .matrix tbody tr { padding: 16px 0 10px; border-top: 1px solid var(--rule); }
+  .matrix tbody tr:first-child { border-top-color: var(--ink); }
+  .matrix tr.wu { padding: 16px 14px 10px; margin-top: 4px; }
+  .matrix tbody th, .matrix tr.wu th { width: auto; padding: 0 0 8px; border: 0; }
+  .closing { min-height: 0; padding: 120px 0 140px; }
+  .matrix td { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 7px 0; border: 0; text-align: left; font-size: 14.5px; }
+  .matrix td::before { content: attr(data-label); color: var(--ink-2); }
+  .matrix tr.wu td::before { color: var(--ink); }
+  .matrix .grp { font-size: 20px; }
 }
 
 /* Menu: on phones the section links fold behind a toggle (JS only; without JS
@@ -555,8 +570,8 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
               </ul>
             </div>
             <figure class="sol-fig">
-              <div class="frame frame-shot frame-free"><img src="assets/product/clarity.webp" width="2280" height="1680" loading="lazy" decoding="async"
-                   alt="The live topic New pricing plan on the WrapUp map, with four captured and two open points. Two cards are open: a decision, Keep the free plan at three projects, and an open question, Do we offer an annual discount?, with the choice to discuss it or set it aside."></div>
+              <div class="frame frame-shot frame-free"><picture><source media="(max-width: 640px)" srcset="assets/product/clarity-m.webp" width="1170" height="2340"><img src="assets/product/clarity.webp" width="2280" height="1680" loading="lazy" decoding="async"
+                   alt="The live topic New pricing plan on the WrapUp map, with four captured and two open points. Two cards are open: a decision, Keep the free plan at three projects, and an open question, Do we offer an annual discount?, with the choice to discuss it or set it aside."></picture></div>
             </figure>
           </article>
           <article class="sol" id="solution-involved" data-i="1" tabindex="-1" aria-labelledby="solution-involved-t">
@@ -570,7 +585,6 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
             <figure class="sol-fig">
               <div class="frame frame-shot">
                 <picture>
-                  <source media="(max-width: 640px)" srcset="assets/product/call-narrow.webp" width="2151" height="1929">
                   <img src="assets/product/call.webp" width="3072" height="1929" loading="lazy" decoding="async"
                        alt="A video call with four participants, and the WrapUp panel docked beside it, showing the meeting map of a sample meeting: an earlier topic, Pricing, above the live topic, Onboarding, each holding the points raised under it.">
                 </picture>
@@ -587,16 +601,16 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
             </div>
             <figure class="sol-fig" data-ai-fig>
               <div class="frame frame-shot frame-free ai-stage">
-                <div class="ai-tabs mono" style="left:67.37%;top:29.29%" aria-label="AI suggestion kinds"><button type="button" data-ai-pick="0" class="on" aria-pressed="true">Ask</button><button type="button" data-ai-pick="1" aria-pressed="false">Flag</button><button type="button" data-ai-pick="2" aria-pressed="false">Add</button></div>
-                <button type="button" class="ai-node" data-ai-pick="0" style="left:29.13%;top:47.34%" aria-label="Open the Ask suggestion: a question for the room"></button>
-                <button type="button" class="ai-node" data-ai-pick="1" style="left:23.01%;top:54.70%" aria-label="Open the Flag suggestion: an unchecked assumption"></button>
-                <button type="button" class="ai-node" data-ai-pick="2" style="left:26.54%;top:36.80%" aria-label="Open the Add suggestion: something nobody raised"></button>
-                <img src="assets/product/ai-1.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="0" class="on"
-                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Ask suggestion, a question for the room, is open: Who signs off on the final price?">
-                <img src="assets/product/ai-2.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="1" aria-hidden="true"
-                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Flag suggestion, an unchecked assumption, is open: This assumes most customers will pay annually upfront.">
-                <img src="assets/product/ai-3.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="2" aria-hidden="true"
-                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Add suggestion, something nobody raised, is open: Nobody has raised how this affects existing customers.">
+                <div class="ai-tabs mono" style="--l:67.37%;--t:29.29%;--lm:21.79%;--tm:56.07%" aria-label="AI suggestion kinds"><button type="button" data-ai-pick="0" class="on" aria-pressed="true">Ask</button><button type="button" data-ai-pick="1" aria-pressed="false">Flag</button><button type="button" data-ai-pick="2" aria-pressed="false">Add</button></div>
+                <button type="button" class="ai-node" data-ai-pick="0" style="--l:29.13%;--t:47.34%;--lm:47.87%;--tm:25.18%" aria-label="Open the Ask suggestion: a question for the room"></button>
+                <button type="button" class="ai-node" data-ai-pick="1" style="--l:23.01%;--t:54.70%;--lm:36.38%;--tm:32.27%" aria-label="Open the Flag suggestion: an unchecked assumption"></button>
+                <button type="button" class="ai-node" data-ai-pick="2" style="--l:26.54%;--t:36.80%;--lm:43.03%;--tm:15.04%" aria-label="Open the Add suggestion: something nobody raised"></button>
+                <picture><source media="(max-width: 640px)" srcset="assets/product/ai-m-1.webp" width="1170" height="1680"><img src="assets/product/ai-1.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="0" class="on"
+                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Ask suggestion, a question for the room, is open: Who signs off on the final price?"></picture>
+                <picture><source media="(max-width: 640px)" srcset="assets/product/ai-m-2.webp" width="1170" height="1680"><img src="assets/product/ai-2.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="1" aria-hidden="true"
+                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Flag suggestion, an unchecked assumption, is open: This assumes most customers will pay annually upfront."></picture>
+                <picture><source media="(max-width: 640px)" srcset="assets/product/ai-m-3.webp" width="1170" height="1680"><img src="assets/product/ai-3.webp" width="2280" height="1680" loading="lazy" decoding="async" data-ai="2" aria-hidden="true"
+                     alt="The live topic New pricing plan on the WrapUp map, with three captured points and three AI suggestions. The Add suggestion, something nobody raised, is open: Nobody has raised how this affects existing customers."></picture>
               </div>
             </figure>
           </article>
@@ -635,11 +649,11 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
               <tr><th scope="col">Approach</th><th scope="col">Follow topics live</th><th scope="col">See what needs attention</th><th scope="col">Shape discussions together</th><th scope="col">Proactive AI without interruption</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row"><span class="grp">AI notes &amp; post-meeting summaries</span><span class="ex">Otter, Fireflies, Fathom, Granola, tl;dv</span></th><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
-              <tr><th scope="row"><span class="grp">In-meeting AI assistants</span><span class="ex">Zoom AI Companion, Gemini in Meet, Teams Copilot</span></th><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
-              <tr><th scope="row"><span class="grp">AI facilitators</span><span class="ex">Microsoft Teams Facilitator</span></th><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
-              <tr><th scope="row"><span class="grp">Meeting workspaces</span><span class="ex">Fellow, Parabol</span></th><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Not a primary focus"><use href="#dot-none"/></svg></td></tr>
-              <tr class="wu"><th scope="row"><span class="grp">WrapUp</span></th><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td></tr>
+              <tr><th scope="row"><span class="grp">AI notes &amp; post-meeting summaries</span><span class="ex">Otter, Fireflies, Fathom, Granola, tl;dv</span></th><td data-label="Follow topics live"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="See what needs attention"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="Shape discussions together"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="Proactive AI without interruption"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
+              <tr><th scope="row"><span class="grp">In-meeting AI assistants</span><span class="ex">Zoom AI Companion, Gemini in Meet, Teams Copilot</span></th><td data-label="Follow topics live"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="See what needs attention"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="Shape discussions together"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="Proactive AI without interruption"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
+              <tr><th scope="row"><span class="grp">AI facilitators</span><span class="ex">Microsoft Teams Facilitator</span></th><td data-label="Follow topics live"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="See what needs attention"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="Shape discussions together"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="Proactive AI without interruption"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td></tr>
+              <tr><th scope="row"><span class="grp">Meeting workspaces</span><span class="ex">Fellow, Parabol</span></th><td data-label="Follow topics live"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="See what needs attention"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Some support"><use href="#dot-half"/></svg></td><td data-label="Shape discussions together"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="Proactive AI without interruption"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Not a primary focus"><use href="#dot-none"/></svg></td></tr>
+              <tr class="wu"><th scope="row"><span class="grp">WrapUp</span></th><td data-label="Follow topics live"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="See what needs attention"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="Shape discussions together"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td><td data-label="Proactive AI without interruption"><svg class="dot" viewBox="0 0 16 16" role="img" aria-label="Primary focus"><use href="#dot-full"/></svg></td></tr>
             </tbody>
           </table>
         </div>
@@ -924,12 +938,12 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   const fromHash = sols.findIndex(el => '#' + el.id === location.hash);
   if (fromHash >= 0) addEventListener('load', () => goToSol(fromHash));
 
-  // Hero art, a 6-second loop drawn in the map's own visual language:
-  //   0–0.8s    scattered ideas, tangled together
-  //   0.8–2s    WrapUp gathers them into topics, each point keeping its kind
-  //             (Next steps is the live topic from the moment it forms)
-  //   4.5–6s    everything scatters again, back to where the loop began
-  // Scrolling away from the hero also scatters it; scrolling back re-forms it.
+  // Hero art, a 6-second loop drawn in the map's own visual language, on time
+  // alone (scrolling doesn't affect it):
+  //   5.8–1.2s  scattered ideas, tangled together (about 2s with the fades)
+  //   1.2–2s    WrapUp gathers them into topics, each point keeping its kind
+  //   2–5s      the map holds, Next steps live
+  //   5–5.8s    everything scatters again
   const art = document.querySelector('[data-art]');
   if (art) {
     const ctx = art.getContext('2d');
@@ -984,6 +998,9 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
     const mixHex = (a, b, k) => { const A = rgb(a), B = rgb(b); return 'rgb(' + A.map((v, i) => Math.round(lerp(v, B[i], k))).join(',') + ')'; };
     let W = 0, H = 0, S = 0;
+    // clicking a topic makes it the live one (the halo glides over to it)
+    let live = 2, lastT = null, lastShown = 0, seek = null;
+    const mix = [0, 0, 1];
 
     const size = () => {
       const r = art.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
@@ -999,14 +1016,15 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
       const k = S / 600, ox = (W - S) / 2, oy = (H - S * 1.05) / 2;
       const P = (fx, fy) => ({ x: ox + fx * S, y: oy + fy * S * 1.05 });
       // how organised the picture is: 0 = scattered ideas, 1 = WrapUp's map
-      // scrolling down from the hero scatters it back into ideas; scrolling up re-forms it
-      const g = ease(step(.8, 2, t)) * (1 - ease(step(4.5, 6, t))) * (1 - ease(step(0, 1, scrollY / (innerHeight * .55))));
+      const g = ease(step(1.2, 2, t)) * (1 - ease(step(5, 5.8, t)));
       const shown = step(.35, 1, g), tint = step(.4, .9, g);
-      const liveW = [0, 0, shown];   // the last topic is live as soon as the map forms
+      mix.forEach((v, i) => { mix[i] = lerp(v, i === live ? 1 : 0, .14); });
+      const liveW = mix.map(v => v * shown);
 
       const sc = k;   // topics hold their size; only the points travel
       const w = TAU * t / L;   // loop phase: every wobble below repeats exactly once per loop
       const T = topics.map(tp => ({ ...tp, ...P(tp.x, tp.y), R: tp.R0 * sc }));
+      lastT = T; lastShown = shown;
       const pos = nodes.map(n => {
         const tp = T[n.ti];
         const m = P(n.bx + .03 * Math.sin(w * 2 + n.ph) + .015 * Math.sin(w * 3 + n.ph * 2),
@@ -1082,6 +1100,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     if (!motion) draw(3);
     else {
       let on = true, raf = 0, t = 0, last = 0;
+      seek = v => { t = v; };
       const frame = now => {
         t += last ? Math.min(.05, (now - last) / 1000) : 0;   // no leaps after a pause or a slow frame
         last = now; draw(t);
@@ -1093,6 +1112,21 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
       document.addEventListener('visibilitychange', () => run(!document.hidden));
     }
     addEventListener('resize', () => { size(); if (!motion) draw(3); });
+
+    // Clicking the map: on a topic, it becomes the live one and the map stays a
+    // little longer; while it is still a cloud, the map forms straight away.
+    const hit = e => {
+      if (!lastT || lastShown < .5) return -1;
+      const r = art.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      return lastT.findIndex(tp => Math.hypot(x - tp.x, y - tp.y) <= tp.R + 8);
+    };
+    art.addEventListener('pointermove', e => { art.style.cursor = (hit(e) >= 0 || lastShown < .5) ? 'pointer' : ''; });
+    art.addEventListener('click', e => {
+      const i = hit(e);
+      if (i >= 0) { live = i; if (seek) seek(2); }
+      else if (lastShown < .5 && seek) seek(1.2);
+      if (!motion) draw(3);
+    });
   }
 
   if (!('IntersectionObserver' in window)) {

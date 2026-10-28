@@ -25,10 +25,12 @@ push — Pages redeploys in a minute.
   gesture moves exactly one step (the `stops` list in the script).
 - **Hero art.** Drawn in the browser, not an image (the "Hero art" block in
   `index.html`'s script): scattered ideas gather into topic groups sized and
-  packed by the map's own rules, the last topic live. It loops, scatters as you
-  scroll away, and is a still frame with reduced motion.
-- **Product images.** In `assets/product/`: `call` / `call-narrow` (WrapUp
-  beside a video call, from `info/`), and `clarity` and `ai-1`–`ai-3`, drawn
+  packed by the map's own rules, the last topic live. It loops on a 6-second
+  timer (about 2s of idea cloud, 3s of map); clicking a topic makes it live,
+  and clicking the cloud forms the map. A still frame with reduced motion.
+- **Product images.** In `assets/product/`: `call` (WrapUp beside a video
+  call, from `info/`), and `clarity` and `ai-1`–`ai-3` (plus `-m` portrait
+  versions for phones), drawn
   with the demo's own renderer (`nodeSVG`, `packItems`, `cardBlock` in
   `demo/index.html`) on a transparent background. `og.png` is the social preview.
 - **Motion.** The Challenges and With WrapUp sections pin while you scroll
