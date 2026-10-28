@@ -195,7 +195,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* ── 2. challenges: a horizontal accordion (vertical on phones) ─────────── */
 
 .challenges { background: var(--white); padding: var(--section) 0; }
-.challenges h2 { font-size: var(--t-h2); line-height: 1.02; letter-spacing: -.022em; max-width: 9em; text-wrap: balance; }
+.challenges h2 { font-size: var(--t-h2); line-height: 1.02; letter-spacing: -.022em; white-space: nowrap; }
+.ch-sub { margin-top: 14px; font-size: clamp(19px, 1.55vw, 23px); line-height: 1.45; color: var(--ink-2); }
 
 .acc { margin-top: clamp(48px, 6vw, 88px); display: flex; gap: 8px; height: clamp(400px, 36vw, 500px); }
 /* Desktop with motion: the section pins for a short stretch while scrolling
@@ -203,7 +204,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (min-width: 861px) {
   .m .challenges { padding: 0; height: calc(100vh + 240vh); }
   .m .ch-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 64px; }
-  .m .ch-sticky .acc { height: min(clamp(400px, 36vw, 500px), 56vh); margin-top: clamp(36px, 5vh, 72px); }
+  .m .ch-sticky .acc { height: min(clamp(380px, 34vw, 480px), 52vh); margin-top: clamp(28px, 4.5vh, 60px); }
 }
 .acc-item { position: relative; flex: 1 1 0; min-width: 0; background: var(--paper); color: var(--ink); }
 .acc-item.open { flex-grow: 2; background: var(--ink); color: var(--white); }
@@ -326,7 +327,8 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
 .hl-tint { color: #c8c5f7 !important; background: linear-gradient(transparent 62%, rgba(167, 163, 240, .28) 62%); }
 .m 
 .ap-cmp { }
-.ap-cmp h3 { grid-column: 1 / span 6; font-size: clamp(38px, 4.4vw, 66px); line-height: 1.04; letter-spacing: -.02em; }
+.ap-cmp h3 { grid-column: 1 / -1; font-size: clamp(38px, 4.4vw, 66px); line-height: 1.04; letter-spacing: -.02em; white-space: nowrap; }
+.cmp-sub { grid-column: 1 / span 8; margin-top: 14px; font-size: clamp(19px, 1.55vw, 23px); line-height: 1.45; color: var(--ink-2); max-width: 32em; }
 
 /* The matrix: thin rules, one circle per emphasis, WrapUp's row in soft indigo. */
 .table-wrap { margin-top: clamp(28px, 3.5vw, 48px); overflow-x: auto; }
@@ -428,6 +430,8 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   .btn { padding: 16px 20px; }
 }
 
+@media (max-width: 640px) { .ap-cmp h3, .challenges h2 { white-space: normal; } }
+
 /* Phones: the matrix scrolls sideways with the approach names pinned. */
 @media (max-width: 640px) {
   .matrix { table-layout: fixed; width: 640px; min-width: 0; }
@@ -496,7 +500,8 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   <!-- ── 2. The challenges ───────────────────────────────────────────────── -->
   <section class="challenges" id="challenges" aria-labelledby="ch-title">
     <div class="wrap ch-sticky">
-      <h2 id="ch-title" data-reveal>The challenges of everyday meetings.</h2>
+      <h2 id="ch-title" data-reveal>We&rsquo;ve all been in these meetings.</h2>
+      <p class="ch-sub" data-reveal style="--delay:.08s">Meetings are essential for collaboration, yet making them effective isn&rsquo;t easy.</p>
       <div class="acc" data-acc data-reveal style="--delay:.1s">
         <div class="acc-item">
           <h3><button class="acc-btn" type="button" id="ch-b1" aria-expanded="false" aria-controls="ch-p1">
@@ -615,6 +620,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
         </svg>
         <div class="grid">
           <h3 id="cmp-title" data-reveal>Built for better discussions.</h3>
+          <p class="cmp-sub" data-reveal style="--delay:.1s">WrapUp supports your meeting as it happens, without distracting you.</p>
         </div>
         <div class="table-wrap" role="region" aria-labelledby="cmp-title" tabindex="0" data-reveal style="--delay:.15s">
           <table class="matrix">
