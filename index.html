@@ -327,8 +327,6 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
 .m 
 .ap-cmp { }
 .ap-cmp h3 { grid-column: 1 / span 6; font-size: clamp(38px, 4.4vw, 66px); line-height: 1.04; letter-spacing: -.02em; }
-.ap-line { grid-column: 8 / span 5; align-self: end; font-size: clamp(19px, 1.55vw, 23px); line-height: 1.5; color: var(--ink-2); max-width: 26em; }
-.ap-line strong { font-weight: 500; color: var(--ink); background: linear-gradient(transparent 62%, rgba(67, 56, 202, .16) 62%); }
 
 /* The matrix: thin rules, one circle per emphasis, WrapUp's row in soft indigo. */
 .table-wrap { margin-top: clamp(28px, 3.5vw, 48px); overflow-x: auto; }
@@ -359,7 +357,6 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   .matrix th, .matrix td { padding-top: 10px; padding-bottom: 11px; }
   .matrix .grp { font-size: 19px; }
 }
-.approach .note { margin-top: 10px; color: var(--ink-2); font-size: 13.5px; font-style: italic; }
 
 /* ── 6. closing ─────────────────────────────────────────────────────────── */
 
@@ -378,6 +375,17 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
 .foot .wordmark em { color: #a7a3f0; }
 .foot .mono { color: rgba(255, 255, 255, .55); }
 
+/* Request a demo, when no email app opens: a small panel with the address. */
+.mail-help { position: fixed; right: 20px; bottom: 20px; z-index: 50; width: min(360px, calc(100vw - 40px)); padding: 22px 22px 20px; background: var(--ink); color: var(--white); border-radius: 12px; box-shadow: 0 18px 50px -20px rgba(0, 0, 0, .45); }
+.m .mail-help:not([hidden]) { animation: up .35s var(--ease) both; }
+.mail-help-d { padding-right: 28px; font-size: 16px; line-height: 1.45; color: rgba(255, 255, 255, .75); }
+.mail-help-d strong { color: var(--white); font-weight: 500; }
+.mail-help-a { display: flex; align-items: center; gap: 18px; margin-top: 16px; flex-wrap: wrap; }
+.mail-help .btn { padding: 12px 16px; font-size: 14px; }
+.mail-help-x { position: absolute; top: 10px; right: 12px; width: 30px; height: 30px; border: 0; background: none; color: rgba(255, 255, 255, .6); font-size: 22px; line-height: 1; cursor: pointer; }
+.mail-help-x:hover { color: var(--white); }
+.mail-help button:focus-visible, .mail-help a:focus-visible { outline-color: var(--white); }
+
 /* ── tablet ─────────────────────────────────────────────────────────────── */
 
 @media (max-width: 1080px) {
@@ -393,8 +401,7 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   .art { grid-row: auto; margin-top: 24px; min-height: 0; height: min(92vw, 440px); }
   .intro h1 { font-size: clamp(88px, 22vw, 168px); }
 
-  .ap-line, .ap-body { margin-top: 22px; }
-
+  
 }
 
 /* Phones: the accordion turns vertical and each panel opens downward. */
@@ -608,7 +615,6 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
         </svg>
         <div class="grid">
           <h3 id="cmp-title" data-reveal>Built for better discussions.</h3>
-          <p class="ap-line" data-reveal style="--delay:.1s">WrapUp helps teams <strong>follow conversations as they happen, contribute ideas, and notice important points</strong> without losing focus on the meeting.</p>
         </div>
         <div class="table-wrap" role="region" aria-labelledby="cmp-title" tabindex="0" data-reveal style="--delay:.15s">
           <table class="matrix">
@@ -626,7 +632,6 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
           </table>
         </div>
         <p class="legend-row mono" aria-hidden="true"><span><svg class="dot" viewBox="0 0 16 16" aria-hidden="true"><use href="#dot-full"/></svg> Primary focus</span><span><svg class="dot" viewBox="0 0 16 16" aria-hidden="true"><use href="#dot-half"/></svg> Some support</span><span><svg class="dot" viewBox="0 0 16 16" aria-hidden="true"><use href="#dot-none"/></svg> Not a primary focus</span></p>
-        <p class="note">Illustrative comparison of design emphasis, not measured performance. Specific products may offer overlapping capabilities.</p>
       </div>
     </div>
   </section>
@@ -652,6 +657,14 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   </div>
 </footer>
 
+<div class="mail-help" role="dialog" aria-labelledby="mail-help-d" hidden>
+  <p class="mail-help-d" id="mail-help-d">Write to us at <strong>wrapup.iui@gmail.com</strong></p>
+  <div class="mail-help-a">
+    <button type="button" class="btn" data-mail-copy>Copy address</button>
+  </div>
+  <button type="button" class="mail-help-x" data-mail-close aria-label="Close">&times;</button>
+</div>
+
 <script>
 (() => {
   const motion = document.documentElement.classList.contains('m');
@@ -659,6 +672,37 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
   // Demo buttons: point them at the configured destination (see the top of <head>).
   document.querySelectorAll('[data-demo]').forEach(a => {
     if (window.WRAPUP_DEMO_HREF) a.href = window.WRAPUP_DEMO_HREF;
+  });
+
+  // If no email app takes over within a moment of pressing "Request a Demo",
+  // show the address with a button to copy it.
+  const help = document.querySelector('.mail-help');
+  const mail = new URL(window.WRAPUP_DEMO_HREF);
+  const to = mail.pathname;
+  let opener = null;
+  const closeHelp = () => { help.hidden = true; if (opener) opener.focus(); };
+  document.querySelectorAll('[data-demo]').forEach(a => a.addEventListener('click', () => {
+    opener = a;
+    let left = false;
+    const away = () => { left = true; };
+    addEventListener('blur', away, { once: true });
+    document.addEventListener('visibilitychange', away, { once: true });
+    setTimeout(() => {
+      removeEventListener('blur', away);
+      if (left || document.hidden) return;
+      help.hidden = false;
+      help.querySelector('[data-mail-copy]').focus();
+    }, 1200);
+  }));
+  help.querySelector('[data-mail-close]').addEventListener('click', closeHelp);
+  help.addEventListener('keydown', e => { if (e.key === 'Escape') closeHelp(); });
+  help.querySelector('[data-mail-copy]').addEventListener('click', e => {
+    const b = e.currentTarget;
+    const say = (t, ms) => { b.textContent = t; setTimeout(() => { b.textContent = 'Copy address'; }, ms); };
+    // if the clipboard is refused, select the address so it can be copied by hand
+    const select = () => { const r = document.createRange(); r.selectNodeContents(help.querySelector('strong')); getSelection().removeAllRanges(); getSelection().addRange(r); say(/Mac/.test(navigator.platform) ? 'Press \u2318C to copy' : 'Press Ctrl+C to copy', 3000); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(to).then(() => say('Copied', 1800), select);
+    else select();
   });
 
   // Sticky bar: a hairline once the page has scrolled, and the small wordmark
@@ -813,6 +857,58 @@ html:not(.js) .acc-panel p, html:not(.js) .acc-panel a { color: var(--ink); }
     e.preventDefault();
     goToSol(i);
   }));
+  // Desktop: through Challenges and With WrapUp, one scroll moves one step,
+  // however far the wheel or trackpad travels. The stops, in order: challenges
+  // (all equal), each challenge, each solution, then Our Approach. Outside
+  // that run, and with reduced motion or on phones, scrolling is untouched.
+  const apHead = document.querySelector('.ap-head');
+  const stops = () => {
+    const pad = 72, ct = chTop(), cl = chLen(), st = solTop(), sl = stageLen();
+    return [ct - pad, ...OPENS.map(o => ct + cl * (o + .15)), st - pad, st + sl * 1.5, st + sl * 2.5,
+            apHead.getBoundingClientRect().top + scrollY - pad].map(Math.round);
+  };
+  let stepping = false, lastStep = 0, lastWheel = 0, lastDelta = 0;
+  const stepTo = y => {
+    stepping = true; lastStep = performance.now();
+    const root = document.documentElement;
+    root.style.scrollSnapType = 'none';
+    let done = false;
+    const finish = () => { if (done) return; done = true; stepping = false; root.style.scrollSnapType = ''; };
+    if ('onscrollend' in window) addEventListener('scrollend', finish, { once: true });
+    setTimeout(finish, 1100);
+    scrollTo({ top: y, behavior: 'smooth' });
+  };
+  const step = (dir, e) => {
+    if (!staged()) return false;
+    const S = stops(), y = scrollY;
+    if (y < S[0] - 4 || y > S[S.length - 1] + 4) return false;      // outside the run
+    if (dir < 0 && y <= S[0] + 4) return false;                       // leaving upward
+    if (dir > 0 && y >= S[S.length - 1] - 4) return false;            // leaving downward
+    e.preventDefault();
+    if (stepping || performance.now() - lastStep < 700) return true;  // one step at a time
+    const target = dir > 0 ? S.find(v => v > y + 4) : [...S].reverse().find(v => v < y - 4);
+    if (target !== undefined) stepTo(target);
+    return true;
+  };
+  addEventListener('wheel', e => {
+    const now = performance.now(), d = e.deltaY;
+    // a new gesture: a pause, or a fresh push after the previous one faded
+    const fresh = now - lastWheel > 180 || Math.abs(d) > Math.abs(lastDelta) * 1.6 + 4;
+    lastWheel = now; lastDelta = d;
+    if (!d) return;
+    if (!fresh) {
+      const S = staged() ? stops() : null;
+      if (S && scrollY > S[0] - 4 && scrollY < S[S.length - 1] + 4 && (stepping || now - lastStep < 700)) e.preventDefault();
+      return;
+    }
+    step(Math.sign(d), e);
+  }, { passive: false });
+  addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea, select, [contenteditable]')) return;
+    const dir = { ArrowDown: 1, PageDown: 1, ' ': e.shiftKey ? -1 : 1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (dir && !e.target.closest('.acc-btn, [data-ai-pick]') ) step(dir, e);
+  });
+
   const fromHash = sols.findIndex(el => '#' + el.id === location.hash);
   if (fromHash >= 0) addEventListener('load', () => goToSol(fromHash));
 
